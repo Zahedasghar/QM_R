@@ -1,0 +1,10 @@
+.quote > p {
+  font-size: 4.75em;
+  color: var(--primary);
+}
+.quote .attribution {
+  font-size: 1.5em;
+}
+.quote .attribution a {
+  color: var(--pink);
+}

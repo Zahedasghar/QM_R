@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Quantitative Methods: Thinking clearly with Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Zahid Asghar" />
+    <meta name="date" content="2022-05-22" />
+    <script src="index_files/header-attrs-2.11/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Quantitative Methods: Thinking clearly with Data
+## Fatima Jinnah Women University, Islamabad
+### Zahid Asghar
+### Quaid-i-Azam University, Islamabad
+### 22 May 2022
+
+---
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(fjwu.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: left inverse title-slide
+background-image: url(fjwu.jpg)
+background-position:  100% 100%
+background-size:  contain
+##  The Philosophy and Techniques for Quantitative Research 
+### Department of Economics, FJWU, Rawalpindi
+### Guest Speaker : Zahid Asghar, School of Economics, QAU
+
+
+
+---
+
+class:  left  title-slide 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 15% 
+
+
+## Thinking and data are complement, not substitutes
+
+### Clear thinking is hard specially when mixed up with techniques that surround data and data analysis 
+### Simply focussing statistics and econometric techniques: not a good idea
+### Miss the forest for the trees 
+### Once thinking is focused, techniques will follow 
+
+
+
+
+---
+
+class: middle center 
+## AI, ML, Random Forests, ANN, CNN
+### We are told that this .orange.bold.i[new technology] will made it possible to do thinking for us. But that's not right, no data analysis, .orange.bold.i[no matter how futuristics its name], will work if we .orange[are'nt asking the right questions], if we are'nt making right comparisons, if underlying assumptions are'nt sound, or if underlying data used are'nt appropriate.
+##  .zomp[Learning something new and interesting in the world is our goal]
+---
+class: 
+class: top left  hide_logo 
+background-image: url(fancy.jpg)
+background-size: contain
+
+
+### .orange[Creative thinking instead of forced feed technique factory-based model for deep introspection about underlying issues/problems/..../]
+---
+
+class: top left  hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 15%
+
+
+# Research Qeustions
+
+&gt; ##   .pink[Coming up with a question is easy, but coming up with a good question is hard.]
+
+.pull-left[
+  
+### .pink[A good question in empirical research is one that can be answered and improve our understanding of how world works]  
+
+]
+
+
+--
+.pull-right[
+
+### .pink[What is best university in Pakistan cant be answered? Which university has the highest number of PhDs can definitely be answered.]
+]
+
+---
+
+## Statistical Errors and Biases
+
+.pull-left[
+###Sample Selection 
+### Non-response Bias 
+###Survivorship Bias]
+ .pull-right[
+### Confirmatory Bias
+###  Desirability Bias
+### Bandwagon effect Bias
+###  Binary Bias 
+###  Optimism Bias]
+
+---
+
+## What does matter vs why 
+## Data mining, ML, AI, ANN...
+
+## False Positive, Abstract, False Negative, P-Screening, P-hacking, Publication Bias
+
+
+
+???
+All are very helpful in finding patterns and making predictions are very valuable. 
+Social scientistis dilemma
+If why is ignored, data mining/ML/AI... are very useful. For example if I dont care why PSX will go up or down and I just want to predict if it will or not, then data mining may be fine
+Data mining is bad as final step if you are trying to explain the world
+
+---
+
+## How do you know if you've got  a good question
+
+###1. Consider Potential Results
+###2. Consider Feasibility
+###3 Consider Scale
+###4 Consider Design
+###5 Keep It Simple
+A common mistake is to bundle a bunch of research questions into one. __What are the determinants of social mobility?__
+You are unlikely to answer questin well. Instead try"Is birth location a determinant of social mobility?"
+---
+class: 
+## Correlation doesn't imply causation
+
+&gt; ### .orange[Most politicians facing scandals win reelection]
+
+#### Correlation : description, forecasting
+#### Correlation helps to predict a feature of the world if it is correlated with another feature
+
+### Counterfactuals , Causal Inference
+
+---
+class: 
+# 4 Levels of Knowledge in Quantiative Modeling
+
+### Model is known, parameters are known (Probability Theory)
+
+### Model is unknown, parameters are known (Estimation Theory)
+
+### Model is unknown, parameters are unknown
+
+### Forecasting
+
+
+---
+class: inverse
+## Objectives of a regressioin model
+
+### Summarising Data
+
+### Forecasting
+
+###Causal/Structural Inference
+
+### Policy Analysis
+
+
+---
+
+## Ingredients of a quantitative model
+###1. An economic theory model of the phenomenon of interest.
+###2. A statistical model of the data to be analyzed.
+###3. An estimation method for the unknown parameters.
+###4. The sample of data to be used.
+###5. Evaluation procedures for the adequacy of the fitted model.
+###6. A revision process if any mismatch occurs.
+###7. An analysis of the properties of the procedure.
+
+---
+class: inverse
+
+## Furuious Five
+
+### Regression Analysis
+### DID
+### RDD
+### IV
+### RCTs
+
+---
+class: top left
+background-image: url(jobs.jpg)
+background-size: cover
+.pull-right[![](yes.gif)]
+
+
+# ABL : Always Be Learning.
+
+&lt;span role="img" aria-label="Preparing for jobs which not exist yet"&gt;&lt;/span&gt; 
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

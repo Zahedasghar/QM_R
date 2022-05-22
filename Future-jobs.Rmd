@@ -1,0 +1,156 @@
+---
+title: "Quantitative Methods: Clear Thinking with Data"
+subtitle: "Fatima Jinnah Women University, Islamabad"
+author: "Zahid Asghar"
+institute: "Quaid-i-Azam University, Islamabad"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, extra.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=4, fig.retina=2, 
+  out.width="100%",
+  message = FALSE
+)
+```
+
+
+```{r xaringanthemer, echo=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#035AA6",
+  secondary_color = "#03A696",
+  colors = c(yellow = "#FFFC31", pink = "#E56399",orange= "#fb5607",
+ blue_violet   = "#8338ec",
+ zomp          = "#38A88E",
+ shadow        = "#87826E",
+ blue          = "#1381B0",
+ yellow_orange = "#FF961C")
+)
+```
+
+```{r qau-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "IBA.png"
+)
+```
+
+---
+class: center inverse title-slide
+background-image: url(fjwu.jpg)
+background-position:  100% 100%
+background-size:  contain
+# Department of Economics : FJWU, Rawalpindi
+<img src="cber.png" width="300px"/> 
+## Quantitative Reasoning and Clear Thinking with Data
+### Zahid Asghar, Quaid-i-Azam University, Islamabad
+
+---
+
+class: top left inverse title-slide hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 40% 
+
+## Overview
+
+--
+
+### stangnant export, stagnant productivity 
+
+--
+
+### AI, ML, Robotics : Future Jobs Challenges
+
+--
+### Graduates awareness and readiness
+
+--
+
+### Industria era vs digital era higher education system
+
+--
+
+ ### Thinking from forced feed or factory model to new higher education system
+
+
+--
+
+### Way-forward
+
+---
+
+class: top left  hide_logo 
+background-image: url(cber.png)
+background-position: 100% 0%
+background-size: 40% 
+
+
+# .orange[ Productivity and BOT] 
+.pull-left[
+]
+
+.pull-right[]
+
+---
+
+.pull-left[
+### Single does of education
+] <!--end of pull left-->
+
+.pull-right[
+### Leap from Old to New Reality
+] <!--end of pull right-->
+
+---
+
+class: top left  hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 30%
+
+    
+.pull-left[
+### Old to New Reality
+
+] <!--end of pull left-->
+
+.pull-right[
+### Rotuine vs Nonroutine
+] <!--end of pull right--> 
+
+---
+class: top left  hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 40%
+
+
+# Skill-gap
+
+> ##   .pink[Gone are the days of a straight-line path through college to work to promotion to career to retirement.]
+
+.pull-left[
+## Upskilling  
+### .pink[Upskilling is deepening your knowledge and skills in your current domain.]  
+
+]
+
+--
+.pull-right[
+## Reskilling
+### .pink[Reskilling is extending your knowledge and skills to new domains.]
+]
+
+---
+
+
