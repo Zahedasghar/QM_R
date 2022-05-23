@@ -191,7 +191,7 @@ background-size: 15%
 
 ## Policy Analysis
 ---
-class: 
+
 ## Correlation doesn't imply causation
 
 > ### .orange[Most politicians facing scandals win reelection]
@@ -202,6 +202,10 @@ class:
 ### Counterfactuals , Causal Inference
 
 ---
+class: top left inverse hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 15%
 
 ## Ingredients of a quantitative model
 ###1. An economic theory model of the phenomenon of interest.
@@ -213,6 +217,10 @@ class:
 ###7. An analysis of the properties of the procedure.
 
 ---
+class: top left inverse hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 15%
 
 # Exploratory Data Analysis
 # Confirmatory Data Analysis
@@ -220,7 +228,10 @@ class:
 # Macroeconomic Analysis
 # Softwares : Open community softwares 
 ---
-class: inverse
+class: top left inverse hide_logo 
+background-image: url(fjwu_logo.jpg)
+background-position: 100% 0%
+background-size: 15%
 
 ## Furuious Five 
 
@@ -230,7 +241,8 @@ class: inverse
 ### IV
 ### RCTs
 --
-## ARIMA, VAR, SVAR, Cointegration, ...
+
+### ARIMA, VAR, SVAR, Cointegration, ...
 ---
 class: top left
 background-image: url(jobs.jpg)
