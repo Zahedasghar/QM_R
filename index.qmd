@@ -1,5 +1,5 @@
 ---
-title: "Quantitative Method using R"
+title: "Quantitative Methods in R"
 author: "Zahid Asghar"
 date: today
 format: 
