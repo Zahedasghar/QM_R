@@ -1,0 +1,93 @@
+
+---
+title: "Learn Basics of Data Analysis using R "
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+date: "`r format(Sys.time(), '%d %B %Y')`"
+subtitle: School of Economics, Quaid-i-Azam University
+header-includes:
+  - \usepackage{titling}
+  - \pretitle{
+       \begin{center}
+        \hspace*{-16cm}
+        \includegraphics[width=1.5in,height=1.5in]{logo.jpg}\LARGE\\
+        \vspace*{-3cm}
+         }
+---
+
+## [Look at all the data points](https://www.rstudio.com/blog/how-i-use-stories-to-share-data-at-meetings/#.Ysv3S4zF4fE.twitter)
+
+In Penguin data, there are variables that specify measurements
+
+```{r}
+library(tidyverse)
+library(palmerpenguins)
+glimpse(penguins)
+```
+
+I’m curious about differences in measurements, so I plot the bill length, bill depth, and flipper length. I use a scatter plot because I want to see each data point. I also color the points by species, based on the hunch that different species have different measurements:
+
+```{r}
+ggplot(penguins)+aes(x=body_mass_g,y=bill_length_mm, color=species)+
+  geom_point()+labs(title = "Bill Length by Species")
+
+```
+
+```{r}
+ggplot(penguins, 
+       aes(x = body_mass_g, 
+           y = bill_depth_mm, 
+           color = species)) + 
+  geom_point() + 
+  labs(title = "Bill Depth By Species")
+
+```
+
+```{r}
+ggplot(penguins, 
+       aes(x = body_mass_g, 
+           y = flipper_length_mm, 
+           color = species)) + 
+  geom_point() + 
+  labs(title = "Flipper Length By Species")
+
+```
+
+**Average length of these measurements by penguin species:**
+
+```{r}
+penguins |> 
+  group_by(species) |> 
+  summarize(mean_bill_length = 
+              mean(bill_length_mm, na.rm = TRUE), 
+            mean_bill_depth = 
+              mean(bill_depth_mm, na.rm = TRUE), 
+            mean_flipper_length = 
+              mean(flipper_length_mm, na.rm = TRUE), 
+            mean_body_mass = 
+              mean(body_mass_g, na.rm = TRUE))
+```
+
+
+## Categorize Details into Interesting Themes
+
+Patterns in species measurements
+Differences, but also similarities
+The Chinstrap penguins trade bill size for flipper size
+
+## The Presentation: Start with the Story
+Here’s how I would present the information:
+
+Point out interesting themes
+Describe selected details
+Show selected data points
+
+## Point out interesting Themes
+ 
+## Describe Selected Details
+
+## Show Selected Data Points

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R for Social Sciences, Public Policy and Humanities</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Zahid Asghar" />
+    <script src="R-for-socical-science,-public-policy-and-humanities_files/header-attrs-2.14/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# R for Social Sciences, Public Policy and Humanities
+]
+.author[
+### Zahid Asghar
+]
+.date[
+### <code>Sarting 4th of July</code>
+]
+
+---
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(atomcamp.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: left inverse title-slide
+background-image: url(atomcamp.jpg)
+background-position:  50% 80%
+background-size:  contain
+#  The Philosophy and Techniques for Quantitative Analysis
+
+---
+class:  left  title-slide 
+background-image: url(atomcamp.jpg)
+background-position: 100% 5%
+background-size: 25% 
+
+### Basics of quantitative investigation,Research Design
+--
+
+### Simply focussing statistics and techniques:  Miss the forest for the trees 
+--
+
+### Introduction to Data and exploring it with R
+--
+
+###  thinking clearly with data is very important ,once thinking is focused, techniques will follow 
+--
+
+### Learning R for making sense of data based case studies
+--
+
+#### UN Voting data, Punjab Tax data (Messy vs tidy), WHO, Gapminder, nycflights data
+
+---
+
+class: middle center title-slide
+## UN Voting Data
+---
+class: middle center inverse hide_logo 
+background-image: url(atomcamp.jpg)
+background-position: 100% 5%
+background-size: 25%
+
+# Data visualization of UN voting data
+
+---
+class: middle center title-slideWelcome!
+## All relevant materials are at http://.....
+## Download Data.zip into your WD to follow along with exercises.
+## Open the R script in RStudio.
+
+---
+class: middle center title-slide
+Why R?
+Free
+Flexible
+Failsafe &amp; future-proof (sort of)
+---
+What can R do for you?
+R is a popular language &amp; platform for data science &amp; statistical computing. It is:
+
+open source
+expanding (increasing capabilities through add-ons)
+able to open almost any data format
+able to scrape data from the web
+a decent tool for data wrangling
+popular in industry &amp; academia
+pretty old ("born" 1976...)
+---
+But R also:
+is a slightly awkward language for those with programming experience
+has a steep learning curve
+requires a willingness to write code and use scripts (cf. Tableau &amp; co.)
+is less general than Python (but a bit easier to use for advanced statistical computing)
+---
+
+Why R in a Social Science, Humanities and Public Policy setting?
+R is very versatile; it can be used in a variety of settings (cf. specialized tools for specific purposes)
+R is open source and free
+
+---
+# How might you use R?
+Create dataviz for teaching
+Introduce as a tool for students
+Your own research
+--
+## Two use cases today
+
+Analyze economic &amp; demographic data
+Import data into R
+Clean &amp; process the data
+Create visualizations
+
+--
+Analyze social network data
+Create and import network data
+Create network visualizations &amp; measures
+
+---
+# Caveat emptor!
+The two examples are fairly involved
+If you're new to R and/or coding, this may look like overload- But! This is a good starting point for you.
+Everything I'm doing you'll be able to reproduce on your own
+--
+Everything I'm doing you'll be able to reproduce on your own
+
+Things I won't be able to show:
+
+Intro to the R language itself
+We don't have the time, so learn by tweaking my code
+RMarkdown (using R to produce complete documents or slides)
+Text analysis in R
+R offers powerful packages! Links at the end of this workshop
+---
+# R is a calculator
+
+```r
+1 + 1
+```
+
+```
+## [1] 2
+```
+# R is an object-based language
+
+
+```r
+students &lt;- 16
+papers &lt;- 3
+papers_to_grade &lt;- students * papers
+papers_to_grade
+```
+
+```
+## [1] 48
+```
+---
+
+#Try for yourself!
+How many papers would you have to grade if you were teaching two instead of one section?
+
+
+```r
+students &lt;- 16
+papers &lt;- 3
+classes &lt;- 2
+papers_to_grade &lt;- students * papers * classes
+papers_to_grade
+```
+
+```
+## [1] 96
+```
+
+---
+# R can be extended by using one of 12,621 packages
+
+See (https://cran.r-project.org/web/packages/)
+
+# Install packages once, load them each time
+For data input/output:
+
+```r
+library("tidyverse")
+help(package = "tidyverse")
+```
+
+
+---
+class: center middle title-slide
+#Example 1: Data from the CIA World Factbook (2014), prepared by OpenIntro Statistics
+
+---
+
+
+
+```r
+cia &lt;- read_csv("cia_factbook.csv")
+#glimpse(cia)
+#View(cia)
+```
+
+---
+
+# Life expectancy
+
+```r
+ggplot(data = cia, aes(x = life_exp_at_birth)) + geom_histogram()
+```
+
+```
+## Warning: Removed 35 rows containing non-finite values (stat_bin).
+```
+
+&lt;img src="R-for-socical-science,-public-policy-and-humanities_files/figure-html/unnamed-chunk-6-1.png" width="100%" /&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

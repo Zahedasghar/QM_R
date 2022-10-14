@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R for Social Sciences, Public Policy and Humanities</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Zahid Asghar" />
+    <script src="R-for-socical-science-public-policy-and-humanities_files/header-attrs-2.14/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# R for Social Sciences, Public Policy and Humanities
+]
+.author[
+### Zahid Asghar
+]
+.date[
+### <code>Sarting 4th of July</code>
+]
+
+---
+
+
+
+
+
+
+
+<div>
+<style type="text/css">.xaringan-extra-logo {
+width: 110px;
+height: 128px;
+z-index: 0;
+background-image: url(atomcamp.jpg);
+background-size: contain;
+background-repeat: no-repeat;
+position: absolute;
+top:1em;right:1em;
+}
+</style>
+<script>(function () {
+  let tries = 0
+  function addLogo () {
+    if (typeof slideshow === 'undefined') {
+      tries += 1
+      if (tries < 10) {
+        setTimeout(addLogo, 100)
+      }
+    } else {
+      document.querySelectorAll('.remark-slide-content:not(.title-slide):not(.inverse):not(.hide_logo)')
+        .forEach(function (slide) {
+          const logo = document.createElement('div')
+          logo.classList = 'xaringan-extra-logo'
+          logo.href = null
+          slide.appendChild(logo)
+        })
+    }
+  }
+  document.addEventListener('DOMContentLoaded', addLogo)
+})()</script>
+</div>
+
+---
+class: left inverse title-slide
+background-image: url(atomcamp.jpg)
+background-position:  50% 80%
+background-size:  contain
+#  CIA Fact Book, oscarssowhite, UN voting
+
+---
+class: center middle inverse
+# CIA, oscarssowhite, UN Voting data, Punjab Tax data (Messy vs tidy), WHO, Gapminder, nycflights data
+---
+class: middle center title-slide
+Why R?
+Free
+Flexible
+Failsafe &amp; future-proof (sort of)
+---
+Class: center middle
+## What can R do for you?
+## R is a popular language &amp; platform for data science &amp; statistical computing. It is:
+
+### open source
+### expanding (increasing capabilities through add-ons)
+### able to open almost any data format
+### able to scrape data from the web
+### a decent tool for data wrangling
+### popular in industry &amp; academia
+### pretty old ("born" 1976...)
+---
+## But R also:
+- is a slightly awkward language for those with programming experience
+has a steep learning curve
+- requires a willingness to write code and use scripts (cf. Tableau &amp; co.)
+is less general than Python (but a bit easier to use for advanced statistical computing)
+---
+
+###  Why R in a Social Science, Humanities and Public Policy setting?
+### R is very versatile; it can be used in a variety of settings (cf. specialized tools for specific purposes)
+### R is open source and free
+
+---
+# How might you use R?
+Create dataviz for teaching
+Introduce as a tool for students
+Your own research
+--
+
+## Case studies
+
+### Analyze economic &amp; demographic data
+### Import data into R
+### Clean &amp; process the data
+### Create visualizations
+
+--
+
+## Analyze social network data
+## Create and import network data
+## Create network visualizations &amp; measures
+
+---
+# Caveat emptor!
+The two examples are fairly involved
+If you're new to R and/or coding, this may look like overload- But! This is a good starting point for you.
+Everything I'm doing you'll be able to reproduce on your own
+--
+Everything I'm doing you'll be able to reproduce on your own
+
+Things I won't be able to show:
+
+Intro to the R language itself
+We don't have the time, so learn by tweaking my code
+RMarkdown (using R to produce complete documents or slides)
+Text analysis in R
+R offers powerful packages! Links at the end of this workshop
+---
+# R is a calculator
+
+```r
+1 + 1
+```
+
+```
+## [1] 2
+```
+# R is an object-based language
+
+
+```r
+students &lt;- 16
+papers &lt;- 3
+papers_to_grade &lt;- students * papers
+papers_to_grade
+```
+
+```
+## [1] 48
+```
+---
+
+#Try for yourself!
+How many papers would you have to grade if you were teaching two instead of one section?
+
+
+```r
+students &lt;- 16
+papers &lt;- 3
+classes &lt;- 2
+papers_to_grade &lt;- students * papers * classes
+papers_to_grade
+```
+
+```
+## [1] 96
+```
+
+---
+# R can be extended by using one of 12,621 packages
+
+See (https://cran.r-project.org/web/packages/)
+
+# Install packages once, load them each time
+For data input/output:
+
+```r
+library("tidyverse")
+#help(package = "tidyverse")
+```
+
+
+---
+class: center middle title-slide
+#Example 1: Data from the CIA World Factbook (2014), prepared by OpenIntro Statistics
+
+---
+
+
+
+```r
+cia &lt;- read_csv("cia_factbook.csv")
+#glimpse(cia)
+#View(cia)
+```
+
+---
+
+# Life expectancy
+
+```r
+ggplot(data = cia, aes(x = life_exp_at_birth)) + geom_histogram()
+```
+
+```
+## Warning: Removed 35 rows containing non-finite values (stat_bin).
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-6-1.png" width="100%" /&gt;
+
+---
+#Try for yourself!
+How is the net migration rate distributed?
+
+
+```r
+ggplot(data = cia, aes(x = net_migration_rate)) + geom_histogram()
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-7-1.png" width="100%" /&gt;
+
+---
+#Life expectancy -&gt; more emigration?
+
+
+```r
+ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) + 
+  geom_point() + 
+  geom_text(aes(label = country))
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+
+
+---
+#Let's un-clutter this:
+
+```r
+filter(cia, net_migration_rate &gt; 20 | net_migration_rate &lt; -20)
+```
+
+```
+## # A tibble: 6 × 11
+##   country             area birth_rate death_rate infant_mortalit… internet_users
+##   &lt;chr&gt;              &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Zimbabwe          390757      32.5       10.6             26.6         1423000
+## 2 Syria             185180      22.8        6.51            15.8         4469000
+## 3 Qatar              11586       9.95       1.53             6.42         563800
+## 4 Lebanon            10400      14.8        4.95             7.98        1000000
+## 5 Micronesia, Fede…    702      21.0        4.25            21.9           17000
+## 6 American Samoa       199      22.9        4.68             8.92             NA
+## # … with 5 more variables: life_exp_at_birth &lt;dbl&gt;,
+## #   maternal_mortality_rate &lt;dbl&gt;, net_migration_rate &lt;dbl&gt;, population &lt;dbl&gt;,
+## #   population_growth_rate &lt;dbl&gt;
+```
+
+---
+#Let's un-clutter this:
+
+
+```r
+ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) + 
+  geom_point() + 
+  geom_text(data = filter(cia, net_migration_rate &gt; 20 | net_migration_rate &lt; -20), aes(label = country), vjust = "inward", hjust = "inward")
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-10-1.png" width="100%" /&gt;
+
+---
+## Are the two variables related?
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+
+---
+## How does internet access vary around the world?
+I could use internet_users, but the raw number is bad for comparison. So let's divide by population:
+
+```r
+cia &lt;- mutate(cia, 
+              internet_users_perc = internet_users / population * 100)
+```
+---
+## How does internet access vary around the world?
+
+
+
+```r
+ggplot(data = cia, aes(x = internet_users_perc)) + geom_histogram()
+```
+
+```
+## Warning: Removed 46 rows containing non-finite values (stat_bin).
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-13-1.png" width="100%" /&gt;
+
+
+
+---
+
+## Higher life expectancy -&gt; more internet access?
+
+
+```r
+ggplot(data = cia, aes(x = life_exp_at_birth, y = internet_users_perc)) + 
+  geom_point() + 
+  geom_smooth()
+```
+
+```
+## Warning: Removed 51 rows containing non-finite values (stat_smooth).
+```
+
+```
+## Warning: Removed 51 rows containing missing values (geom_point).
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
+
+---
+
+##Let's improve this plot!
+
+
+```
+## Warning: Removed 51 rows containing non-finite values (stat_smooth).
+```
+
+```
+## Warning: Removed 51 rows containing missing values (geom_point).
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_text).
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-15-1.png" width="100%" /&gt;
+
+---
+# Try for yourself!
+### How would you plot internet access against population growth (population_growth_rate)?
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-16-1.png" width="100%" /&gt;
+---
+# Identify the outliers
+
+
+```r
+filter(cia, population_growth_rate &lt; -5 | population_growth_rate &gt; 5)
+```
+
+```
+## # A tibble: 2 × 12
+##   country   area birth_rate death_rate infant_mortality_rate internet_users
+##   &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;                 &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Syria   185180       22.8       6.51                 15.8         4469000
+## 2 Lebanon  10400       14.8       4.95                  7.98        1000000
+## # … with 6 more variables: life_exp_at_birth &lt;dbl&gt;,
+## #   maternal_mortality_rate &lt;dbl&gt;, net_migration_rate &lt;dbl&gt;, population &lt;dbl&gt;,
+## #   population_growth_rate &lt;dbl&gt;, internet_users_perc &lt;dbl&gt;
+```
+
+---
+# Let's try again, w/o outliers
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-18-1.png" width="100%" /&gt;
+
+---
+## Visualize data on a map
+First, use the built-in map tools in ggplot2:
+
+
+```r
+library(ggplot2)
+library(tidyverse)
+worldmap &lt;- map_data("world")
+glimpse(worldmap)
+```
+
+```
+## Rows: 99,338
+## Columns: 6
+## $ long      &lt;dbl&gt; -69.89912, -69.89571, -69.94219, -70.00415, -70.06612, -70.0…
+## $ lat       &lt;dbl&gt; 12.45200, 12.42300, 12.43853, 12.50049, 12.54697, 12.59707, …
+## $ group     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, …
+## $ order     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15, 16, 17, 18, 1…
+## $ region    &lt;chr&gt; "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba…
+## $ subregion &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+```
+
+---
+## Clean some country names
+
+
+```r
+cia &lt;- mutate(cia,
+              country = ifelse(country == "United States", "USA", country))
+cia &lt;- mutate(cia,
+              country = ifelse(country == "United Kingdom", "UK", country))
+```
+
+---
+##Join CIA and map data
+
+```r
+iumap &lt;- left_join(x = worldmap, 
+                   y = cia,
+                   by = c("region" = "country"))
+glimpse(iumap)
+```
+
+```
+## Rows: 99,338
+## Columns: 17
+## $ long                    &lt;dbl&gt; -69.89912, -69.89571, -69.94219, -70.00415, -7…
+## $ lat                     &lt;dbl&gt; 12.45200, 12.42300, 12.43853, 12.50049, 12.546…
+## $ group                   &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2…
+## $ order                   &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14, 15,…
+## $ region                  &lt;chr&gt; "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "…
+## $ subregion               &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ area                    &lt;dbl&gt; 180, 180, 180, 180, 180, 180, 180, 180, 180, 1…
+## $ birth_rate              &lt;dbl&gt; 12.65, 12.65, 12.65, 12.65, 12.65, 12.65, 12.6…
+## $ death_rate              &lt;dbl&gt; 8.09, 8.09, 8.09, 8.09, 8.09, 8.09, 8.09, 8.09…
+## $ infant_mortality_rate   &lt;dbl&gt; 11.74, 11.74, 11.74, 11.74, 11.74, 11.74, 11.7…
+## $ internet_users          &lt;dbl&gt; 24000, 24000, 24000, 24000, 24000, 24000, 2400…
+## $ life_exp_at_birth       &lt;dbl&gt; 76.35, 76.35, 76.35, 76.35, 76.35, 76.35, 76.3…
+## $ maternal_mortality_rate &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 460, 4…
+## $ net_migration_rate      &lt;dbl&gt; 9.04, 9.04, 9.04, 9.04, 9.04, 9.04, 9.04, 9.04…
+## $ population              &lt;dbl&gt; 110663, 110663, 110663, 110663, 110663, 110663…
+## $ population_growth_rate  &lt;dbl&gt; 1.36, 1.36, 1.36, 1.36, 1.36, 1.36, 1.36, 1.36…
+## $ internet_users_perc     &lt;dbl&gt; 21.687466, 21.687466, 21.687466, 21.687466, 21…
+```
+
+
+---
+##First take: a chloropleth map
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-22-1.png" width="100%" /&gt;
+
+---
+## Some improvements
+Map projection
+Labels
+Remove Antarctica
+Legend placement
+
+```r
+worldmap_noant &lt;- filter(worldmap, 
+                         region != "Antarctica")
+iumap &lt;- left_join(x = worldmap_noant, 
+                   y = cia,
+                   by = c("region" = "country"))
+```
+
+---
+## Some improvements
+Map projection
+Labels
+Remove Antarctica
+Legend placement
+
+
+```r
+ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill = life_exp_at_birth)) + 
+  labs(title = "Internet usage around the world", 
+       subtitle = "% of population with internet access", 
+       caption = "Source: CIA World Factbook",
+       fill = "% of population with internet access") + 
+  coord_map(projection = "rectangular", lat0 = 0, xlim = c(-180, 180)) +
+  theme(legend.position = "bottom")
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-24-1.png" width="100%" /&gt;
+
+
+---
+## Try for yourself:
+Map migration rates around the world!
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-25-1.png" width="100%" /&gt;
+
+
+---
+## Adding locations is also easy. Let's pick capitals...
+First, I scrape location data from the web (using the "rvest" package): Google points me to http://techslides.com/list-of-countries-and-capitals...
+
+
+
+```r
+library("rvest")
+cap_url &lt;- read_html("http://techslides.com/list-of-countries-and-capitals")
+cap_nodes &lt;- html_nodes(cap_url, "table")
+cap_table &lt;- html_table(cap_nodes[1], fill = TRUE, header = TRUE)[[1]]
+glimpse(cap_table)
+```
+
+```
+## Rows: 245
+## Columns: 6
+## $ `Country Name`      &lt;chr&gt; "Afghanistan", "Aland Islands", "Albania", "Algeri…
+## $ `Capital Name`      &lt;chr&gt; "Kabul", "Mariehamn", "Tirana", "Algiers", "Pago P…
+## $ `Capital Latitude`  &lt;dbl&gt; 34.516667, 60.116667, 41.316667, 36.750000, -14.26…
+## $ `Capital Longitude` &lt;dbl&gt; 69.183333, 19.900000, 19.816667, 3.050000, -170.70…
+## $ `Country Code`      &lt;chr&gt; "AF", "AX", "AL", "DZ", "AS", "AD", "AO", "AI", "A…
+## $ `Continent Name`    &lt;chr&gt; "Asia", "Europe", "Europe", "Africa", "Australia",…
+```
+
+---
+## Fixing a few country names and removing mini-states
+
+
+```r
+cap_table &lt;- mutate(cap_table,
+                    `Country Name` = ifelse(`Country Name` == "United States", "USA", `Country Name`))
+cap_table &lt;- mutate(cap_table,
+                    `Country Name` = ifelse(`Country Name` == "United Kingdom", "UK", `Country Name`))
+cia_with_caps &lt;- left_join(x = cia, 
+                   y = cap_table,
+                   by = c("country" = "Country Name"))
+cia_with_caps &lt;- mutate(cia_with_caps,
+                        no_ministates = ifelse(population &gt;= 1000000, 
+                                               1, 
+                                               0))
+```
+
+---
+
+## Internet access, with capitals
+
+
+```r
+ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
+  geom_polygon(aes(fill = internet_users_perc)) + 
+  geom_point(data = filter(cia_with_caps, no_ministates == 1), 
+             aes(x = `Capital Longitude`, y = `Capital Latitude`, group = NULL), 
+             color = "orange", size = 1) + 
+  labs(title = "Internet usage around the world", 
+       subtitle = "% of population with internet access", 
+       caption = "Source: CIA World Factbook",
+       fill = "% of population with internet access") + 
+  coord_map(projection = "rectangular", lat0 = 0, xlim = c(-180, 180)) +
+  theme(legend.position = "bottom")
+```
+
+```
+## Warning: Removed 10 rows containing missing values (geom_point).
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-28-1.png" width="100%" /&gt;
+
+
+---
+## Instead of building your own...
+you can use some built-in mapping tools, too!
+
+Let's look at some economic data for the tri-state area, using the "blscrapeR" package to pull data from the API of the U.S. Bureau of Labor Statistics.
+
+
+
+---
+
+# Example 2 : #oscarssowhite
+What do we know about diversity among Academy Award winners over time?
+
+I use data provided by Crowdflower/FigureEight: https://data.world/crowdflower/academy-awards-demographics
+
+```r
+##aa &lt;- import("Data/crowdflower-academy-awards-demographics/data/oscars_demographics_dfe.csv")
+aa&lt;-read_csv("Oscars-demographics-DFE.csv")
+glimpse(aa)
+```
+
+```
+## Rows: 441
+## Columns: 27
+## $ `_unit_id`                      &lt;dbl&gt; 670454353, 670454354, 670454355, 67045…
+## $ `_golden`                       &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FAL…
+## $ `_unit_state`                   &lt;chr&gt; "finalized", "finalized", "finalized",…
+## $ `_trusted_judgments`            &lt;dbl&gt; 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,…
+## $ `_last_judgment_at`             &lt;chr&gt; "2/10/15 3:45", "2/10/15 2:03", "2/10/…
+## $ birthplace                      &lt;chr&gt; "Chisinau, Moldova", "Glasgow, Scotlan…
+## $ `birthplace:confidence`         &lt;dbl&gt; 1.0000, 1.0000, 1.0000, 1.0000, 1.0000…
+## $ date_of_birth                   &lt;chr&gt; "30-Sep-1895", "2-Feb-1886", "30-Sep-1…
+## $ `date_of_birth:confidence`      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+## $ race_ethnicity                  &lt;chr&gt; "White", "White", "White", "White", "W…
+## $ `race_ethnicity:confidence`     &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+## $ religion                        &lt;chr&gt; "Na", "Na", "Na", "Na", "Roman Catholi…
+## $ `religion:confidence`           &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,…
+## $ sexual_orientation              &lt;chr&gt; "Straight", "Straight", "Straight", "S…
+## $ `sexual_orientation:confidence` &lt;dbl&gt; 1.0000, 0.6842, 1.0000, 1.0000, 1.0000…
+## $ year_of_award                   &lt;dbl&gt; 1927, 1930, 1931, 1932, 1933, 1934, 19…
+## $ `year_of_award:confidence`      &lt;dbl&gt; 1.0000, 1.0000, 0.6667, 1.0000, 1.0000…
+## $ award                           &lt;chr&gt; "Best Director", "Best Director", "Bes…
+## $ biourl                          &lt;chr&gt; "http://www.nndb.com/people/320/000043…
+## $ birthplace_gold                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ date_of_birth_gold              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ movie                           &lt;chr&gt; "Two Arabian Knights", "The Divine Lad…
+## $ person                          &lt;chr&gt; "Lewis Milestone", "Frank Lloyd", "Lew…
+## $ race_ethnicity_gold             &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ religion_gold                   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ sexual_orientation_gold         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+## $ year_of_award_gold              &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA…
+```
+
+---
+## Which awards are in the dataset?
+
+
+```r
+table(aa$award)
+```
+
+```
+## 
+##              Best Actor            Best Actress           Best Director 
+##                      88                      95                      91 
+##   Best Supporting Actor Best Supporting Actress 
+##                      82                      85
+```
+
+---
+## AA winners overall
+
+
+```r
+ggplot(data = aa, aes(x = race_ethnicity)) + geom_bar()
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-32-1.png" width="100%" /&gt;
+
+---
+## AA winners over time
+First, collapse the data:
+
+
+```r
+aa_year &lt;- summarize(group_by(aa, year_of_award, race_ethnicity),
+                     awards = n())
+```
+
+
+---
+## AA winners over time
+Then, create the plot:
+
+```r
+ggplot(data = aa_year, 
+       aes(x = year_of_award, y = awards, color = race_ethnicity)) + 
+  geom_point() + 
+  ylim(0, NA)
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-34-1.png" width="100%" /&gt;
+
+---
+## More recent trends since 1960
+
+
+```r
+ggplot(data = filter(aa_year, year_of_award &gt;= 1960), aes(x = year_of_award, y = awards, fill = race_ethnicity)) + 
+  geom_col() + 
+  ylim(0, NA) 
+```
+
+&lt;img src="R-for-socical-science-public-policy-and-humanities_files/figure-html/unnamed-chunk-35-1.png" width="100%" /&gt;
+
+```r
+#scale_fill_viridis(discrete = TRUE)
+```
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"ratio": "16:9",
+"countIncrementalSlides": true
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

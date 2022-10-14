@@ -1,0 +1,214 @@
+---
+title: "R for Social Sciences, Public Policy and Humanities"
+subtitle: ""
+author: "Zahid Asghar"
+institute: ""
+date: "`Sarting 4th of July`"
+output:
+  xaringan::moon_reader:
+    css: [xaringan-themer.css, extra.css]
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=4, fig.retina=2, 
+  out.width="100%",
+  message = FALSE
+)
+```
+
+
+```{r xaringanthemer, echo=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#035AA6",
+  secondary_color = "#03A696",
+  colors = c(yellow = "#FFFC31", pink = "#E56399",orange= "#fb5607",
+ blue_violet   = "#8338ec",
+ zomp          = "#38A88E",
+ shadow        = "#87826E",
+ blue          = "#1381B0",
+ yellow_orange = "#FF961C")
+)
+```
+
+```{r qau-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "atomcamp.jpg"
+)
+```
+
+---
+class: left inverse title-slide
+background-image: url(atomcamp.jpg)
+background-position:  50% 80%
+background-size:  contain
+#  The Philosophy and Techniques for Quantitative Analysis
+
+---
+class:  left  title-slide 
+background-image: url(atomcamp.jpg)
+background-position: 100% 5%
+background-size: 25% 
+
+### Basics of quantitative investigation,Research Design
+--
+
+### Simply focussing statistics and techniques:  Miss the forest for the trees 
+--
+
+### Introduction to Data and exploring it with R
+--
+
+###  thinking clearly with data is very important ,once thinking is focused, techniques will follow 
+--
+
+### Learning R for making sense of data based case studies
+--
+
+#### UN Voting data, Punjab Tax data (Messy vs tidy), WHO, Gapminder, nycflights data
+
+---
+
+class: middle center title-slide
+## UN Voting Data
+---
+class: middle center inverse hide_logo 
+background-image: url(atomcamp.jpg)
+background-position: 100% 5%
+background-size: 25%
+
+# Data visualization of UN voting data
+
+---
+class: middle center title-slideWelcome!
+## All relevant materials are at http://.....
+## Download Data.zip into your WD to follow along with exercises.
+## Open the R script in RStudio.
+
+---
+class: middle center title-slide
+Why R?
+Free
+Flexible
+Failsafe & future-proof (sort of)
+---
+What can R do for you?
+R is a popular language & platform for data science & statistical computing. It is:
+
+open source
+expanding (increasing capabilities through add-ons)
+able to open almost any data format
+able to scrape data from the web
+a decent tool for data wrangling
+popular in industry & academia
+pretty old ("born" 1976...)
+---
+But R also:
+is a slightly awkward language for those with programming experience
+has a steep learning curve
+requires a willingness to write code and use scripts (cf. Tableau & co.)
+is less general than Python (but a bit easier to use for advanced statistical computing)
+---
+
+Why R in a Social Science, Humanities and Public Policy setting?
+R is very versatile; it can be used in a variety of settings (cf. specialized tools for specific purposes)
+R is open source and free
+
+---
+# How might you use R?
+Create dataviz for teaching
+Introduce as a tool for students
+Your own research
+--
+## Two use cases today
+
+Analyze economic & demographic data
+Import data into R
+Clean & process the data
+Create visualizations
+
+--
+Analyze social network data
+Create and import network data
+Create network visualizations & measures
+
+---
+# Caveat emptor!
+The two examples are fairly involved
+If you're new to R and/or coding, this may look like overload- But! This is a good starting point for you.
+Everything I'm doing you'll be able to reproduce on your own
+--
+Everything I'm doing you'll be able to reproduce on your own
+
+Things I won't be able to show:
+
+Intro to the R language itself
+We don't have the time, so learn by tweaking my code
+RMarkdown (using R to produce complete documents or slides)
+Text analysis in R
+R offers powerful packages! Links at the end of this workshop
+---
+# R is a calculator
+```{r}
+1 + 1
+```
+# R is an object-based language
+
+```{r}
+students <- 16
+papers <- 3
+papers_to_grade <- students * papers
+papers_to_grade
+```
+---
+
+#Try for yourself!
+How many papers would you have to grade if you were teaching two instead of one section?
+
+```{r}
+students <- 16
+papers <- 3
+classes <- 2
+papers_to_grade <- students * papers * classes
+papers_to_grade
+```
+
+---
+# R can be extended by using one of 12,621 packages
+
+See (https://cran.r-project.org/web/packages/)
+
+# Install packages once, load them each time
+For data input/output:
+```{r}
+library("tidyverse")
+help(package = "tidyverse")
+```
+
+
+---
+class: center middle title-slide
+#Example 1: Data from the CIA World Factbook (2014), prepared by OpenIntro Statistics
+
+---
+
+
+```{r}
+cia <- read_csv("cia_factbook.csv")
+#glimpse(cia)
+#View(cia)
+```
+
+---
+
+# Life expectancy
+```{r}
+ggplot(data = cia, aes(x = life_exp_at_birth)) + geom_histogram()
+```
