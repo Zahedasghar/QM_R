@@ -1,0 +1,246 @@
+---
+title: "Quantitative Method using R"
+author: "Zahid Asghar"
+date: today
+format: 
+  revealjs:
+    self-contained: false
+    slide-number: c/t
+    width: 1600
+    height: 900
+    logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
+    footer: "[atomcamp](https://atomcamp.com/)"
+    theme: ["simple", "custom.scss"]
+    echo: true
+    multiplex: true
+    code-link: true
+    title-slide-attributes:
+      data-background-color: "#447099"
+editor: source
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+## About Trainer
+
+::: columns
+::: { .column width="30%"} 
+![Prof.Dr. Zahid Asghar](zahid.jpeg){width="600"}
+:::
+
+::: {.column width="70%"}
+::: nonincremental
+-   Student of:
+    -   Applied Econometrics
+    -   Data Analytics
+    -   Development Economics
+    -   R, STATA, Excel
+    -   Urban Economics
+    -   Skills for jobs of today and tomorrow
+-   Research interests : data for policy,  development economics , Applied Econometrics
+
+:::
+:::
+
+:::
+
+## Course Overview
+
+This course is designed to introduce [students to focus on research design]{.yellow}, [thinking clearly with data]{.yellow} and learn to analyze data apply techniques through computer-based exercises . Philosophy of the course will be to enable students doing exploratory data analytics by mastering concepts through computer assisted tools. [Main software for the course will be R]{.yellow}, STATA do files will also be provided for many of the topics. This course will
+
+-   Emphasis on understanding theory through applications and problem solving, rather than mathematical theorems and complex proofs.
+
+-   Working as a learning community to improve data analytics skills necessary in analyzing data.
+
+## Books for the course
+
+-   Following books will be followed for this course but mainly we shall follow **OpenIntro Statistics** a widely used source at leading universities of the globa:
+
+-   [R for Data Science](https://r4ds.had.co.nz/)
+
+-   [OpenIntro Statistics](https://www.openintro.org/book/os/)
+
+-   [Thinking Clearly with Data](https://press.princeton.edu/books/hardcover/9780691214368/thinking-clearly-with-data)
+
+-   [The Effect](theeffectbook.net)
+
+## 
+::: columns
+::: {.column width="25%"}
+![[OpenIntro Statistics](https://www.openintro.org/book/os/)](openintro.jpg)
+:::
+
+::: {.column width="25%"}
+![[The Effect: An Introduction to Research Design and Causality](https://theeffectbook.net/)](the_effect.jpg)
+:::
+
+::: {.column width="25%"}
+![[Thinking Clearly with Data](https://press.princeton.edu/books/hardcover/9780691214368/thinking-clearly-with-data)](thinking_with_data.jpg)
+:::
+
+::: {.column width="25%"}
+![[R for Data Science](https://r4ds.had.co.nz/)](r4ds.png)
+:::
+:::
+
+
+## Course Objectives
+
+Labs and assignments will be based on real-world data and problems in a wide range of fields in social sciences and humanities, including psychology, sociology, education, and public health. The basics of R and R Markdown will also be covered in the course.
+
+
+## Why this course
+
+-   This course is not a routine statistics learning course.
+
+-   This course is about critical reasoning with data and discussion about evidence based decisioin making.
+
+-   Differentiating : opinion, anecdotes and hard core evidence
+
+-   All slides, codes, notes, data and all related data sets will be provided to all the participants.
+
+-   Learning how to create beautiful presentations, documents and writing research papers using R.
+
+-   Course contents and class quiz based on highly upto date followed in Harvard University, University of Berkeley, Duke among others.
+
+    One can't learn all in this 5 weeks time frame but objective is enabling beginers to move on data analytics learning path while taking professionals to next ladder from their current level of knowledge.
+
+## Who should join
+
+-   Anyone can join this course but obviously those who are with English, History or other humanities background will have to work very hard.
+
+-   Researchers, practitioners, data journalists, data analysts and those who want to start their journey for learning data analytics.
+
+## Course contents
+
+| **Week** | **Title**                                      | **Topics covered**                                                            | **Essential reading**                                                                              |
+|:----------|:----------|:----------|:--------------------------------------|
+| 1        | Software                                       | Introduction to R, RStudio , STATA, gituhub                                   | [RStudio cloud](rstudio.cloud) [github](github.com) [Quarto](quarto.pub)                           |
+| 2        | Data, Variables, Summary Statistics            | Learning and Practicing all the concepts with data                            | tidyverse in action                                                                                |
+|          | continued                                      | In class-labs                                                                 | continued                                                                                          |
+| 4        | Exploratory Data Analysis                      | Thinking clearly with data and making sense of data using summary statistics  |                                                                                                    |
+| 5        | Basic Probability Models and their application | Learning concepts and simulation experiments for understanding concepts       | [Plinko](https://phet.colorado.edu/sims/html/plinko-probability/latest/plinko-probability_en.html) |
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+```
+
+## Data Science
+
+-   [You go into data analysis with the tools you know, not the tools you need]{.hi}
+
+-   The next 2-3 weeks are all about giving you the tools you need
+
+    -   Admittedly, a bit before you know what you need them *for*
+
+-   We will extend them as we learn specific models
+
+## R
+
+::: columns
+::: {.column width="50%"}
+-   **Free** and **open source**
+
+-   A very large community
+
+    -   Written by statisticians for statistics
+    -   Most packages are written for `R` first
+
+-   Can handle virtually any data format
+
+-   Makes replication easy
+
+-   Can integrate into documents (with `Quarto`)
+
+-   R is a *language* so it can do *everything*
+
+    -   A good stepping stone to learning other languages like *Python*
+:::
+
+::: {.column width="50%"}
+![](images/r.png)
+:::
+:::
+
+## Excel (or Stata) Can't Do This
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+
+## Output
+
+```{r}
+#| echo: false
+#| eval: true
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+:::
+
+## Or This
+
+::: panel-tabset
+### Input
+
+The average GDP per capita is `` ` r dollar(mean(gapminder$gdpPercap)) ` `` with a standard deviation of `` ` r dollar(sd(gapminder$gdpPercap)) ` ``.
+
+### Output
+
+The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a standard deviation of `r dollar(sd(gapminder$gdpPercap))`.
+:::
+
+## Or This
+
+```{r}
+#| echo: true
+#| fig-width: 18
+#| fig-align: center
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 73.136946, lat =33.748294 ,
+             popup = "School of Economics, QAU, Islamabad")
+```
