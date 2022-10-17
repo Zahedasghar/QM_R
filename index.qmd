@@ -110,7 +110,7 @@ Labs and assignments will be based on real-world data and problems in a wide ran
 
 -   Course contents and class quiz based on highly upto date followed in Harvard University, University of Berkeley, Duke among others.
 
-    One can't learn all in this 5 weeks time frame but objective is enabling beginers to move on data analytics learning path while taking professionals to next ladder from their current level of knowledge.
+    One can't learn all everything in five weeks tim but objective is enabling beginers to move on data analytics learning path while taking professionals to next ladder from their current level of knowledge.
 
 ## Who should join
 

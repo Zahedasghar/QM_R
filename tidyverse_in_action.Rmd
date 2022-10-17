@@ -1,107 +1,73 @@
 ---
-title: "Gapminder data wrangling and visualisation using R"
-subtitle: ""
+title: "Gapminder data wrangling and <br> visualisation using R"
 author: "Zahid Asghar"
-institute: ""
-date: "`Sarting 4th of July`"
-output:
-  xaringan::moon_reader:
-    css: [xaringan-themer.css, extra.css]
-    nature:
-      slideNumberFormat: "%current%"
-      highlightStyle: github
-      highlightLines: true
-      ratio: 16:9
-      countIncrementalSlides: true
+date: today
+format: 
+  revealjs:
+    self-contained: false
+    slide-number: c/t
+    width: 1600
+    height: 900
+    logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
+    footer: "[atomcamp](https://atomcamp.com/)"
+    theme: ["simple", "custom.scss"]
+    echo: true
+    multiplex: true
+    code-link: true
+    title-slide-attributes:
+      data-background-color: "#447099"
+editor: source
 ---
 
-```{r , include=FALSE}
-knitr::opts_chunk$set(
-  fig.width=9, fig.height=4, fig.retina=2, 
-  out.width="100%",
-  message = FALSE
-)
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
 ```
 
-
-```{r , echo=FALSE}
-library(xaringanthemer)
-style_duo_accent(
-  primary_color = "#035AA6",
-  secondary_color = "#03A696",
-  colors = c(yellow = "#FFFC31", pink = "#E56399",orange= "#fb5607",
- blue_violet   = "#8338ec",
- zomp          = "#38A88E",
- shadow        = "#87826E",
- blue          = "#1381B0",
- yellow_orange = "#FF961C")
-)
-```
-
-```{r qau-logo, echo=FALSE}
-xaringanExtra::use_logo(
-  image_url = "atomcamp.jpg"
-)
-```
-
-```{r xaringan-banner, echo=FALSE}
-xaringanExtra::use_banner(
-  bottom_left = "Quant Methods for SS",
-  bottom_right = "Prof.Dr. Zahid Asghar",
-  top_left = "",
-  exclude = "title-slide"
-)
-```
-
----
-class: left inverse title-slide
-background-image: url(75_yr_pk.png)
-background-position:  50% 0%
-background-size:  10%
-#  Agenda
-## Summarising Data Chapter 2
-## Discussion of various summary statistics
-## How to summarize numerical and categorical data
-## Introduction to R and Lab based demonstration plus HW
+##  Agenda
+- Summarising Data Chapter 2
+- Discussion of various summary statistics
+- How to summarize numerical and categorical data
+- Introduction to R and Lab based demonstration plus HW
 
 
----
-class: middle center title-slide
-# Why R?
-## Free
-## Flexible
-## future-proof (sort of)
----
-Class: center middle
+## Why R?
+- Free
+- Flexible
+- future-proof (sort of)
+
 ## What can R do for you?
-## R is a popular language & platform for data science & statistical computing. It is:
+### R is a popular language & platform for data science & statistical computing. It is:
 
-### open source
-### expanding (increasing capabilities through add-ons)
-### able to open almost any data format
-### able to scrape data from the web
-### a decent tool for data wrangling
-### popular in industry & academia
-### pretty old ("born" 1976...)
----
+- open source
+- expanding (increasing capabilities through add-ons)
+- able to open almost any data format
+- able to scrape data from the web
+- a decent tool for data wrangling
+- popular in industry & academia
+- pretty old ("born" 1976...)
+
 ## But R also:
 - is a slightly awkward language for those with programming experience
 has a steep learning curve
 - requires a willingness to write code and use scripts (cf. Tableau & co.)
 is less general than Python (but a bit easier to use for advanced statistical computing)
----
 
-###  Why R in a Social Science, Humanities and Public Policy setting?
+
+###  Why R in a Social Science, Humanities, Medicine, Public Health and Public Policy setting?
 ### R is very versatile; it can be used in a variety of settings (cf. specialized tools for specific purposes)
 ### R is open source and free
 
----
-# How might you use R?
+
+## How might you use R?
 
 ###  Create dataviz for teaching
 ### Introduce as a tool for students
 ### Your own research
---
 
 ## Case studies
 
@@ -110,19 +76,15 @@ is less general than Python (but a bit easier to use for advanced statistical co
 ### Clean & process the data
 ### Create visualizations
 
---
 
 ## Analyze social network data
-## Create and import network data
-## Create network visualizations & measures
-
----
+### Create and import network data
+### Create network visualizations & measures
 
 ### If you're new to R and/or coding, this may look like overload- But! This is a good starting point for you.
 
---
 
-### Everything I'm doing you'll be able to reproduce on your own
+## Everything I'm doing you'll be able to reproduce on your own
 
 Things I won't be able to show:
 
@@ -131,12 +93,12 @@ We don't have the time, so learn by tweaking my code
 RMarkdown (using R to produce complete documents or slides)
 Text analysis in R
 R offers powerful packages! Links at the end of this workshop
----
-# R is a calculator
+
+## R is a calculator
 ```{r}
 1 + 1
 ```
-# R is an object-based language
+## R is an object-based language
 
 ```{r}
 students <- 16
@@ -144,9 +106,8 @@ papers <- 3
 papers_to_grade <- students * papers
 papers_to_grade
 ```
----
 
-#Try for yourself!
+## Try for yourself!
 How many papers would you have to grade if you were teaching two instead of one section?
 
 ```{r}
@@ -157,24 +118,19 @@ papers_to_grade <- students * papers * classes
 papers_to_grade
 ```
 
----
-# R can be extended by using one of 12,621 packages
+
+## R can be extended by using one of 12,621 packages
 
 See (https://cran.r-project.org/web/packages/)
 
-# Install packages once, load them each time
+## Install packages once, load them each time
 For data input/output:
 ```{r}
 library("tidyverse")
 #help(package = "tidyverse")
 ```
 
-
----
-class: center middle title-slide
-#Example 1: Data from the CIA World Factbook (2014), prepared by OpenIntro Statistics
-
----
+## Example 1: Data from the CIA World Factbook (2014), prepared by OpenIntro Statistics
 
 
 ```{r}
@@ -183,23 +139,20 @@ cia <- read_csv("cia_factbook.csv")
 #View(cia)
 ```
 
----
-
-# Life expectancy
+## Life expectancy
 ```{r}
 ggplot(data = cia, aes(x = life_exp_at_birth)) + geom_histogram()
 ```
 
----
-#Try for yourself!
+
+## Try for yourself!
 How is the net migration rate distributed?
 
 ```{r, warning=FALSE}
 ggplot(data = cia, aes(x = net_migration_rate)) + geom_histogram()
 ```
 
----
-#Life expectancy -> more emigration?
+## Life expectancy -> more emigration?
 
 ```{r,warning=FALSE}
 ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) + 
@@ -208,14 +161,14 @@ ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) +
 ```
 
 
----
-#Let's un-clutter this:
+
+## Let's un-clutter this:
 ```{r,warning=FALSE}
 filter(cia, net_migration_rate > 20 | net_migration_rate < -20)
 ```
 
----
-#Let's un-clutter this:
+
+## Let's un-clutter this:
 
 ```{r,warning=FALSE}
 ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) + 
@@ -223,7 +176,7 @@ ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) +
   geom_text(data = filter(cia, net_migration_rate > 20 | net_migration_rate < -20), aes(label = country), vjust = "inward", hjust = "inward")
 ```
 
----
+
 ## Are the two variables related?
 
 ```{r echo=FALSE,warning=FALSE,fig.height=2.5, fig.width=5}
@@ -233,14 +186,13 @@ ggplot(data = cia, aes(x = life_exp_at_birth, y = net_migration_rate)) +
   geom_smooth()
 ```
 
----
 ## How does internet access vary around the world?
 I could use internet_users, but the raw number is bad for comparison. So let's divide by population:
 ```{r ,warning=FALSE}
 cia <- mutate(cia, 
               internet_users_perc = internet_users / population * 100)
 ```
----
+
 ## How does internet access vary around the world?
 
 
@@ -251,7 +203,6 @@ ggplot(data = cia, aes(x = internet_users_perc)) + geom_histogram()
 
 
 
----
 
 ## Higher life expectancy -> more internet access?
 
@@ -261,9 +212,8 @@ ggplot(data = cia, aes(x = life_exp_at_birth, y = internet_users_perc)) +
   geom_smooth()
 ```
 
----
 
-##Let's improve this plot!
+## Let's improve this plot!
 
 ```{r echo=FALSE}
 ggplot(data = cia, aes(x = life_exp_at_birth, y = internet_users_perc)) + 
@@ -277,8 +227,8 @@ ggplot(data = cia, aes(x = life_exp_at_birth, y = internet_users_perc)) +
        caption = "Source: CIA World Factbook")
 ```
 
----
-# Try for yourself!
+
+## Try for yourself!
 ### How would you plot internet access against population growth (population_growth_rate)?
 
 ```{r echo=FALSE,warning=FALSE}
@@ -288,15 +238,15 @@ ggplot(data = cia, aes(x = population_growth_rate, y = internet_users_perc)) +
   xlab("Population growth rate (in percentage points)") + 
   ylab("% of population with internet access")
 ```
----
-# Identify the outliers
+
+## Identify the outliers
 
 ```{r}
 filter(cia, population_growth_rate < -5 | population_growth_rate > 5)
 ```
 
----
-# Let's try again, w/o outliers
+
+## Let's try again, w/o outliers
 
 ```{r echo=FALSE,warning=FALSE}
 cia_without_outliers <- filter(cia, population_growth_rate > -5 & population_growth_rate < 5)
@@ -307,7 +257,6 @@ ggplot(data = cia_without_outliers, aes(x = population_growth_rate, y = internet
   ylab("% of population with internet access")
 ```
 
----
 ## Visualize data on a map
 First, use the built-in map tools in ggplot2:
 
@@ -318,7 +267,6 @@ worldmap <- map_data("world")
 glimpse(worldmap)
 ```
 
----
 ## Clean some country names
 
 ```{r}
@@ -328,8 +276,7 @@ cia <- mutate(cia,
               country = ifelse(country == "United Kingdom", "UK", country))
 ```
 
----
-##Join CIA and map data
+## Join CIA and map data
 ```{r}
 iumap <- left_join(x = worldmap, 
                    y = cia,
@@ -337,9 +284,7 @@ iumap <- left_join(x = worldmap,
 glimpse(iumap)
 ```
 
-
----
-##First take: a chloropleth map
+## First take: a chloropleth map
 
 ```{r echo=FALSE,warning=FALSE}
 ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
@@ -348,7 +293,7 @@ ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
 
 ```
 
----
+
 ## Some improvements
 Map projection
 Labels
@@ -362,7 +307,6 @@ iumap <- left_join(x = worldmap_noant,
                    by = c("region" = "country"))
 ```
 
----
 ## Some improvements
 Map projection
 Labels
@@ -381,7 +325,6 @@ ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
 ```
 
 
----
 ## Try for yourself:
 Map migration rates around the world!
 
@@ -401,7 +344,6 @@ ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
 ```
 
 
----
 ## Adding locations is also easy. Let's pick capitals...
 First, I scrape location data from the web (using the "rvest" package): Google points me to http://techslides.com/list-of-countries-and-capitals...
 
@@ -414,7 +356,6 @@ cap_table <- html_table(cap_nodes[1], fill = TRUE, header = TRUE)[[1]]
 glimpse(cap_table)
 ```
 
----
 ## Fixing a few country names and removing mini-states
 
 ```{r}
@@ -432,7 +373,6 @@ cia_with_caps <- mutate(cia_with_caps,
 
 ```
 
----
 
 ## Internet access, with capitals
 
@@ -451,7 +391,6 @@ ggplot(data = iumap, aes(x = long, y = lat, group = group)) +
 ```
 
 
----
 ## Instead of building your own...
 you can use some built-in mapping tools, too!
 
@@ -464,9 +403,8 @@ ue_tristate <- get_bls_county(stateName = c("Pennsylvania", "New Jersey", "Delaw
 glimpse(ue_tristate)
 ```
 
----
 
-# Example 2 : #oscarssowhite
+# Example 2 :  oscarssowhite
 What do we know about diversity among Academy Award winners over time?
 
 I use data provided by Crowdflower/FigureEight: https://data.world/crowdflower/academy-awards-demographics
@@ -476,21 +414,19 @@ aa<-read_csv("Oscars-demographics-DFE.csv")
 glimpse(aa)
 ```
 
----
+
 ## Which awards are in the dataset?
 
 ```{r}
 table(aa$award)
 ```
 
----
 ## AA winners overall
 
 ```{r}
 ggplot(data = aa, aes(x = race_ethnicity)) + geom_bar()
 ```
 
----
 ## AA winners over time
 First, collapse the data:
 
@@ -502,7 +438,6 @@ aa_year <- summarize(group_by(aa, year_of_award, race_ethnicity),
 ```
 
 
----
 ## AA winners over time
 Then, create the plot:
 ```{r}
@@ -512,7 +447,6 @@ ggplot(data = aa_year,
   ylim(0, NA)
 ```
 
----
 ## More recent trends since 1960
 
 ```{r}
@@ -524,15 +458,6 @@ ggplot(data = filter(aa_year, year_of_award >= 1960), aes(x = year_of_award, y =
 #scale_fill_viridis(discrete = TRUE)
 ```
 
----
-
-```{r, echo=FALSE, eval=FALSE}
-#remotes::install_github("jhelvy/renderthis")
-library(renderthis)
-to_pdf(from = "R4SS.Rmd")
-
-to_gif(from = "R4SS.Rmd")
-```
 
 
 
