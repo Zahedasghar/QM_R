@@ -31,7 +31,7 @@ options(digits = 3, width = 75)
 ## About Trainer
 
 ::: columns
-::: { .column width="30%"} 
+::: {.column width="30%"}
 ![Prof.Dr. Zahid Asghar](zahid.jpeg){width="600"}
 :::
 
@@ -44,11 +44,9 @@ options(digits = 3, width = 75)
     -   R, STATA, Excel
     -   Urban Economics
     -   Skills for jobs of today and tomorrow
--   Research interests : data for policy,  development economics , Applied Econometrics
-
+-   Research interests : data for policy, development economics , Applied Econometrics
 :::
 :::
-
 :::
 
 ## Course Overview
@@ -72,6 +70,7 @@ This course is designed to introduce [students to focus on research design]{.yel
 -   [The Effect](theeffectbook.net)
 
 ## 
+
 ::: columns
 ::: {.column width="25%"}
 ![[OpenIntro Statistics](https://www.openintro.org/book/os/)](openintro.jpg)
@@ -90,15 +89,13 @@ This course is designed to introduce [students to focus on research design]{.yel
 :::
 :::
 
-
 ## Course Objectives
 
-Labs and assignments will be based on real-world data and problems in a wide range of fields in social sciences and humanities, including psychology, sociology, education, and public health. The basics of R and R Markdown will also be covered in the course.
-
+Labs and assignments will be based on real-world data and problems in a wide range of fields [economics, business analytics, psychology, sociology, education, and public health]{.yellow}. How to write [beautiful documents/reports and awesome presentations in R] using [Quarto]{.yellow} will also be introduced which will increase participants productivity manifold.
 
 ## Why this course
 
--   This course is not a routine statistics learning course.
+-   This course is learning about learning statistical tools with labs, slides, video lectures.
 
 -   This course is about critical reasoning with data and discussion about evidence based decisioin making.
 
@@ -108,7 +105,16 @@ Labs and assignments will be based on real-world data and problems in a wide ran
 
 -   Learning how to create beautiful presentations, documents and writing research papers using R.
 
--   Course contents and class quiz based on highly upto date followed in Harvard University, University of Berkeley, Duke among others.
+-   Concepts : control vs treatment, sampling methodologies, sample size calculation, sample bias, analyzing case studies
+
+## 
+![](ch1.png)
+Observational studies & non-causal inference,
+principles of experimental design & causal inference, exploratory data
+analysis, sampling methodology and sample size, visualizing data to get deep insight, 
+learning to have beautiful presenations, automatic citations inserted and have pdf/html/docs reports,
+basics of probability and regression modeling
+
 
     One can't learn all everything in five weeks tim but objective is enabling beginers to move on data analytics learning path while taking professionals to next ladder from their current level of knowledge.
 
@@ -120,13 +126,13 @@ Labs and assignments will be based on real-world data and problems in a wide ran
 
 ## Course contents
 
-| **Week** | **Title**                                      | **Topics covered**                                                            | **Essential reading**                                                                              |
-|:----------|:----------|:----------|:--------------------------------------|
-| 1        | Software                                       | Introduction to R, RStudio , STATA, gituhub                                   | [RStudio cloud](rstudio.cloud) [github](github.com) [Quarto](quarto.pub)                           |
-| 2        | Data, Variables, Summary Statistics            | Learning and Practicing all the concepts with data                            | tidyverse in action                                                                                |
-|          | continued                                      | In class-labs                                                                 | continued                                                                                          |
-| 4        | Exploratory Data Analysis                      | Thinking clearly with data and making sense of data using summary statistics  |                                                                                                    |
-| 5        | Basic Probability Models and their application | Learning concepts and simulation experiments for understanding concepts       | [Plinko](https://phet.colorado.edu/sims/html/plinko-probability/latest/plinko-probability_en.html) |
+| **Week** | **Title**                                      | **Topics covered**                                                           | **Essential reading**                                                                              |
+|:------------|:------------|:------------|:--------------------------------|
+| 1        | Software                                       | Introduction to R, RStudio , STATA, gituhub                                  | [RStudio cloud](rstudio.cloud) [github](github.com) [Quarto](quarto.pub)                           |
+| 2        | Data, Variables, Summary Statistics            | Learning and Practicing all the concepts with data                           | [tidyverse in action](https://zahidasghar.com/QM_R/tidyverse_in_action#/title-slide)                                                                                |
+|          | continued                                      | In class-labs                                                                | continued                                                                                          |
+| 4        | Exploratory Data Analysis                      | Thinking clearly with data and making sense of data using summary statistics |                                                                                                    |
+| 5        | Basic Probability Models and their application | Learning concepts and simulation experiments for understanding concepts      | [Plinko](https://phet.colorado.edu/sims/html/plinko-probability/latest/plinko-probability_en.html) |
 
 ```{r}
 #| label: setup

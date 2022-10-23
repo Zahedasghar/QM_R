@@ -1,0 +1,197 @@
+---
+title: "Data Analytics in R <br> FS&H, School of Postgraduate Studies <br> and Research, Amoud University, Borama, Somalia."
+author: "Zahid Asghar"
+date: today
+format: 
+  revealjs:
+    self-contained: false
+    slide-number: c/t
+    width: 1600
+    height: 900
+    logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
+    footer: "[atomcamp](https://atomcamp.com/)"
+    theme: ["simple", "custom.scss"]
+    echo: true
+    multiplex: true
+    code-link: true
+    title-slide-attributes:
+      data-background-color: "#447099"
+editor: source
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+## About Trainer
+
+::: columns
+::: {.column width="30%"}
+![Prof.Dr. Zahid Asghar](zahid.jpeg){width="600"}
+:::
+
+::: {.column width="70%"}
+::: nonincremental
+-   Student of:
+    -   Applied Econometrics
+    -   Data Analytics
+    -   Development Economics
+    -   R, STATA, Excel
+    -   Urban Economics
+    -   Skills for jobs of today and tomorrow
+-   Research interests : data for policy, development economics , Applied Econometrics
+:::
+:::
+:::
+
+## Training Overview
+
+This session is designed to familiarise [participants with using R for data analytics]{.yellow}, [thinking clearly with data]{.yellow} and [how to start using Quarto in R for your document writing]{.yellow}.
+-   Following books are [open source and freely]{.yellow} available and serve a useful purpose as per research scholars/analytics needs:
+
+-   [R for Data Science](https://r4ds.had.co.nz/)
+
+-   [OpenIntro Statistics](https://www.openintro.org/book/os/)
+
+-   [Thinking Clearly with Data](https://press.princeton.edu/books/hardcover/9780691214368/thinking-clearly-with-data)
+
+-   [The Effect](theeffectbook.net)
+
+
+
+## 
+
+::: columns
+::: {.column width="25%"}
+![[OpenIntro Statistics](https://www.openintro.org/book/os/)](openintro.jpg)
+:::
+
+::: {.column width="25%"}
+![[The Effect: An Introduction to Research Design and Causality](https://theeffectbook.net/)](the_effect.jpg)
+:::
+
+::: {.column width="25%"}
+![[Thinking Clearly with Data](https://press.princeton.edu/books/hardcover/9780691214368/thinking-clearly-with-data)](thinking_with_data.jpg)
+:::
+
+::: {.column width="25%"}
+![[R for Data Science](https://r4ds.had.co.nz/)](r4ds.png)
+:::
+:::
+
+
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+```
+
+
+
+##  Why R
+
+::: columns
+::: {.column width="50%"}
+-   **Free** and **open source**
+
+-   A very large community
+
+    -   Written by statisticians for statistics
+    -   Most packages are written for `R` first
+
+-   Can handle virtually any data format
+
+-   Makes replication easy
+
+-   Can integrate into documents (with `Quarto`)
+
+-   R is a *language* so it can do *everything*
+
+    -   A good stepping stone to learning other languages like *Python*
+:::
+
+::: {.column width="50%"}
+![](images/r.png)
+:::
+:::
+
+## Excel (or Stata) Can't Do This
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+
+## Output
+
+```{r}
+#| echo: false
+#| eval: true
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+:::
+
+## Or This
+
+::: panel-tabset
+### Input
+
+The average GDP per capita is `` ` r dollar(mean(gapminder$gdpPercap)) ` `` with a standard deviation of `` ` r dollar(sd(gapminder$gdpPercap)) ` ``.
+
+### Output
+
+The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a standard deviation of `r dollar(sd(gapminder$gdpPercap))`.
+:::
+
+## Or This
+
+```{r}
+#| echo: true
+#| fig-width: 18
+#| fig-align: center
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 43.2224, lat =9.9457 ,
+             popup = "Amound University, Somalia")
+```
+## How to focus on learning only needful things in R?

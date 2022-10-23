@@ -9,7 +9,7 @@ format:
     width: 1600
     height: 900
     logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
-    footer: "[atomcamp](https://atomcamp.com/)"
+    footer: "[zahid asghar](https://zahidasghar.com/)"
     theme: ["simple", "custom.scss"]
     echo: true
     multiplex: true
@@ -21,6 +21,7 @@ editor: source
 
 ```{r include=FALSE}
 library(tidyverse)
+library(gapminder)
 library(httr)
 clrs <- MetBrewer::met.brewer(name = "Java")
 clrs_lt <- colorspace::lighten(clrs, 0.9)
@@ -28,20 +29,128 @@ knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
 options(digits = 3, width = 75)
 ```
 
-## Agenda
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(kableExtra)
+library(patchwork)
+library(fontawesome)
+library(gapminder)
+library(scales)
+```
+
+## Agenda 
 
 -   **Summarising Data Chapter 2**
 -   **Discussion of various summary statistics**
 -   **How to summarize numerical and categorical data**
 -   **Introduction to R and Lab based demonstration plus HW**
 
-## Why R?
+### [Why R?]{.yellow}
 
 -   **Free**
 -   **Flexible**
 -   **future-proof (sort of)**
 
-### What can R do for you?
+## R
+
+::: columns
+::: {.column width="50%"}
+-   **Free** and **open source**
+
+-   A very large community
+
+    -   Written by statisticians for statistics
+    -   Most packages are written for `R` first
+
+-   Can handle virtually any data format
+
+-   Makes replication easy
+
+-   Can integrate into documents (with `Quarto`)
+
+-   R is a *language* so it can do *everything*
+
+    -   A good stepping stone to learning other languages like *Python*
+:::
+
+::: {.column width="50%"}
+![](images/r.png)
+:::
+:::
+
+## Excel (or Stata) Can't Do This
+
+::: panel-tabset
+## Code
+
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+
+## Output
+
+```{r}
+#| echo: false
+#| eval: true
+ggplot(data = gapminder, 
+       aes(x = gdpPercap,
+           y = lifeExp,
+           color = continent))+
+  geom_point(alpha=0.3)+
+  geom_smooth(method = "lm")+
+	scale_x_log10(breaks=c(1000,10000, 100000),
+	              label=scales::dollar)+
+	labs(x = "GDP/Capita",
+	     y = "Life Expectancy (Years)")+
+  facet_wrap(~continent)+
+  guides(color = F)+
+  theme_light()
+```
+:::
+
+## Or This
+
+::: panel-tabset
+### Input
+
+The average GDP per capita is `` ` r dollar(mean(gapminder$gdpPercap)) ` `` with a standard deviation of `` ` r dollar(sd(gapminder$gdpPercap)) ` ``.
+
+### Output
+
+The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a standard deviation of `r dollar(sd(gapminder$gdpPercap))`.
+:::
+
+## Or This
+
+```{r}
+#| echo: true
+#| fig-width: 18
+#| fig-align: center
+library(leaflet)
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 73.136946, lat =33.748294 ,
+             popup = "School of Economics, QAU, Islamabad")
+```
+
+## 
 
 **R is a popular language & platform for data science & statistical computing. It is:**
 
@@ -58,11 +167,11 @@ options(digits = 3, width = 75)
 -   **is a slightly awkward language for those with programming experience has a steep learning curve**
 -   **requires a willingness to write code and use scripts (cf. Tableau & co.) is less general than Python (but a bit easier to use for advanced statistical computing)**
 
-### Why R in a Social Science, Humanities, Medicine, Public Health and Public Policy setting?
+### [Why R in a Social Science, Humanities, Medicine, Public Health and Public Policy setting?]{.yellow}
 
 ### R is very versatile; it can be used in a variety of settings (cf. specialized tools for specific purposes)
 
-### R is open source and free
+### [R is open source and free]{.yellow}
 
 ## How might you use R?
 
@@ -72,7 +181,7 @@ options(digits = 3, width = 75)
 
 ### Your own research
 
-## Case studies
+### [Case studies]{.yellow}
 
 ### Analyze economic & demographic data
 
@@ -82,19 +191,19 @@ options(digits = 3, width = 75)
 
 ### Create visualizations
 
-## Analyze social network data
+## [Analyze social network data]{.yellow}
 
-### Create and import network data
+-   Create and import network data
 
-### Create network visualizations & measures
+-   Create network visualizations & measures
 
-### If you're new to R and/or coding, this may look like overload- But! This is a good starting point for you.
+-   If you're new to R and/or coding, this may look like overload- But! This is a good starting point for you.
 
-## Everything I'm doing you'll be able to reproduce on your own
+### [Everything I'm doing you'll be able to reproduce on your own]{.yellow}
 
-**Things I won't be able to show:**
 
-**Intro to the R language itself We don't have the time, so learn by tweaking my code RMarkdown (using R to produce complete documents or slides) Text analysis in R R offers powerful packages! Links at the end of this workshop**
+
+**We are not going to learn R coding but will learn necessary skills in R to work with data**
 
 ## R is a calculator
 
@@ -454,3 +563,5 @@ ggplot(data = filter(aa_year, year_of_award >= 1960), aes(x = year_of_award, y =
 
 #scale_fill_viridis(discrete = TRUE)
 ```
+
+

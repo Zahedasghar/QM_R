@@ -27,7 +27,8 @@ clrs_lt <- colorspace::lighten(clrs, 0.9)
 knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
 options(digits = 3, width = 75)
 ```
-#  CIA Fact Book, oscarssowhite, UN voting
+
+##  CIA Fact Book, oscarssowhite, UN voting
 
 # CIA, oscarssowhite, UN Voting data, Punjab Tax data (Messy vs tidy), WHO, Gapminder, nycflights data
 
