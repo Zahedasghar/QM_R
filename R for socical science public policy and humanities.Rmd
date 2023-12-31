@@ -1,5 +1,5 @@
 ---
-title: "R for Social Sciences, Public Policy and Humanities"
+title: "R for Social Sciences Public Policy and Humanities"
 author: "Zahid Asghar"
 date: today
 format: 

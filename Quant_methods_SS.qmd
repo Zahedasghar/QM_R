@@ -1,0 +1,199 @@
+---
+title: "Basics of Data Analysis , Research Design and R : Lecture 1"
+author: "Zahid Asghar"
+date: today
+format: 
+  revealjs:
+    self-contained: false
+    slide-number: c/t
+    width: 1600
+    height: 900
+    logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
+    footer: "[atomcamp](https://atomcamp.com/)"
+    theme: ["default", "customr.scss"]
+    echo: true
+    multiplex: false
+    code-link: true
+    chalkboard: true
+    title-slide-attributes:
+      data-background-color: "#447099"
+editor: source
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+# Learn to Explore Data alongwith fundamentals of quantitative reasoning and logic {background-color="#447099"}
+
+## 
+
+### Simply focussing statistics and techniques: Miss the forest for the trees
+
+### [Introduction to Data and exploring it with R]{.hi}
+
+### thinking clearly with data is very important ,once thinking is focused, techniques will follow
+
+### [Learning R for making sense of data: real data based case studies]{.hi}
+
+### Exploring WHO, Gapminder, cia_factbook/UN-voting data sets
+
+### [Most politicians facing scandals win reelection]{.hi}
+
+### Correlation doesn't imply causation
+
+### Correlation : description, forecasting
+
+### [Counterfactuals , Causal Inference]{.hi}
+
+# Learning R and Quarto {background-color="#447099"}
+
+## R: not only a statistical language but all documentation under one R {.r-fit-text}
+
+### [Beautiful reports/slides/pptx, pdf documents , CV, research paper... in R]{.hi}
+
+### Exploratory Data Analysis to make sense of data
+
+### [Shallow men believe in luck, believe in circumstances. Strong men believe in cause and effect.]{.hi} [Ralph Waldo Emerson, The Conduct of Life]{.darkblue}
+
+## Basics of data visualization under ggplot2
+
+-   **Exploratory Data Analysis : nycflights, bikes, cia, tax...**
+
+-   [**Probability Theory , Lab based on Kobe's golden hand**]{.hi}
+
+-   **Probability Distributions, Sampling Distributions, CLT**
+
+-   [**Random and non-random sampling procedures**]{.hi}
+
+-   **p-value, p-hacking, p-screening, publication bias**
+
+-   [**Statistical modeling : Linear Regression modeling (Simple and Multiple)**]{.hi}
+
+## 
+
+**Manual table**
+
+::: columns
+::: {.column width="40%"}
+The randomized controlled double-blind experiment
+
+| Size       | Rate    |     |
+|------------|---------|-----|
+| Treatment  | 200,000 | 28  |
+| Control    | 200,000 | 71  |
+| No consent | 350,000 | 46  |
+:::
+
+::: {.column width="40%"}
+[The NFIP study]{.hi-purple}[^1]
+
+| Size                    | Rate    |     |
+|-------------------------|---------|-----|
+| Grade 2 (vaccine)       | 225,000 | 25  |
+| Grade 1 and 3 (control) | 725,000 | 54  |
+| Grade 2 (no consent)    | 125,000 | 44  |
+:::
+:::
+
+[^1]: Source: Tohmas Francis, Jr. "An evaluation of the 1954 poliomyelitis vaccine trials- summary report," American Journal of Public Health vol.45 (1945)pp.1-63
+
+##  {background-color="`r clrs_lt[9]`"}
+
+```{r, echo=FALSE, warning=FALSE, fig.align='default', fig.width=6, fig.height=6}
+library(DiagrammeR)
+#mermaid("graph LR; -->B; A-->C; C-->E; B-->D; C-->D; D-->F; E-->F(experimental eco)")
+mermaid("graph TD; A(Experiments)-->B(Randomized Controlled); A(Experiments)-->C(Controlled Not randomized);
+B(Randomized Controlled)-->D(Patient Population); D(Patient Population)-->E(Eligible); D(Patient Population)-->F(Ineligible <br> too sick,wrong disease <br> no consent);E(Eligible)-->G(Surgery);E(Eligible)-->H(Control);C(Controlled Not randomized)-->I(Patient Population); I(Patient Population)-->J(Healthier);I(Patient Population)-->K(Sicker);J(Healthier)-->L(Sugergy); K(Sicker)-->M(Control)  
+        ")
+```
+
+##  
+
+Table 3. Randomized controlled experiments vs. controlled experiments that not randomized: three-year survival rates in studies of the porta-caval shunt. (Percentage are rounded)
+
+| Randomized | Not randomized |     |
+|------------|----------------|-----|
+| Surgery    | 60%            | 60% |
+| Controls   | 60%            | 45% |
+
+##  
+
+Table 4. A Study of studies. Four therapies evaluated by RCTs and trials using historical controls. Conclusions of the study are summarized as positive about value of the therapy (+), or negative (-).
+
+| Therapy                 | Randomized controlled |     | Historical controlled | Hisotrically controlled |     |
+|------------------------|------------------|:---:|----------------------|------------------------|--|
+|                         | \+                    | \-  | \+                    | \-                      |     |
+|                         |                       |     |                       |                         |     |
+| Coronary bypass surgery | 1                     |  7  | 16                    | 5                       |     |
+| 5-FU                    | 0                     |  5  | 2                     | 0                       |     |
+| BCG                     | 2                     |  2  | 4                     | 0                       |     |
+| DES                     | 0                     |  3  | 5                     | 0                       |     |
+
+## Table 5: Randomized controlled experiments vs. studies with historical controls: three-year survival rates for surgery patients and controls in trials of cornonary by surgery. Randomized trials differ from historical controls.
+
+| Randomized | Historical |       |
+|------------|------------|-------|
+| Surgery    | 87.6%      | 90.9% |
+| Controls   | 83.2%      | 71.1% |
+
+## Observartional Studies 
+
+### Controlled studies not the same as observational
+
+-   [**observationsl studies: its the subjects who assign themselves to different groups: the investigator watch just what happens**]{.hi}
+
+### [Controlled : investigator decides who to be in control group and who to will be in treatment group] {.purple}
+
+## Control has two senses 
+
+### [a control is a subject who did not get the treatment:]{.hi}
+
+### [a controlled experiment is a study where the investigators decides who will be in the treatment group and who will not.]{.hi}
+
+### Smoking and lungs cancer
+
+### Main issue: [was the control group really similar to the treatment group- apart from the exposure of interest?]{.hi}
+
+### Statisticians talk about controlling for confounding factors in an observational studies. This is a third word of the use control.
+
+## Examples 
+
+### [The Clofibrate trial]{.hi-purple}
+
+### Pellagara
+
+### [Cervical cancer and cicumcision]{.hi-purple}
+
+### Ultrasound and low birthweight
+
+### [The Samaritan and suicide]{.hi-purple}
+
+
+# Confounders vs Controls
+
+# Confounders vs Colliders 
+
+
+## Data Tables 
+
+```{r}
+library("DT"); library("dplyr")
+iris %>% 
+  DT::datatable(class = "compact", rownames = FALSE, extensions = "Buttons",
+                options = list(dom = 'tBp', buttons = c("csv","excel"), 
+                               pageLength = 8)) %>% 
+  DT::formatRound(1:4, digits = 1)
+
+```
+
+##  {background-color="#447099"}
+
+![](yes.gif)
+
+### ABL : Always Be Learning.

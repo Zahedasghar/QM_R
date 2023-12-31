@@ -8,8 +8,8 @@ format:
     slide-number: c/t
     width: 1600
     height: 900
-    logo: "https://www.rstudio.com/wp-content/uploads/2018/10/RStudio-Logo-Flat.png"
-    footer: "[atomcamp](https://atomcamp.com/)"
+    logo: "images/unicef.jpg"
+    footer: "[PERI](https://peri.punjab.gov.pk/)"
     theme: ["simple", "custom.scss"]
     echo: true
     multiplex: true
@@ -51,19 +51,17 @@ options(digits = 3, width = 75)
 
 ## Course Overview
 
-This course is designed to introduce [students to focus on research design]{.yellow}, [thinking clearly with data]{.yellow} and learn to analyze data apply techniques through computer-based exercises . Philosophy of the course will be to enable students doing exploratory data analytics by mastering concepts through computer assisted tools. [Main software for the course will be R]{.yellow}, STATA do files will also be provided for many of the topics. This course will
+This worksho is designed to introduce [practitioners to focus on research design and data analytics]{.yellow}, [thinking clearly with data]{.yellow} and learn to analyze data apply techniques through learning by doing . Philosophy of the workshop will be to enable participants doing exploratory data analytics by mastering concepts through computer assisted tools. [Main software for the course will be R]{.yellow}. During these three days we will
 
--   Emphasis on understanding theory through applications and problem solving, rather than mathematical theorems and complex proofs.
+-   Emphasis on learning how to deal with data issues using R.
 
 -   Working as a learning community to improve data analytics skills necessary in analyzing data.
 
-## Books for the course
+## Books for follow up
 
--   Following books will be followed for this course but mainly we shall follow **OpenIntro Statistics** a widely used source at leading universities of the globa:
 
 -   [R for Data Science](https://r4ds.had.co.nz/)
 
--   [OpenIntro Statistics](https://www.openintro.org/book/os/)
 
 -   [Thinking Clearly with Data](https://press.princeton.edu/books/hardcover/9780691214368/thinking-clearly-with-data)
 
@@ -72,28 +70,25 @@ This course is designed to introduce [students to focus on research design]{.yel
 ## 
 
 ::: columns
-::: {.column width="25%"}
-![[OpenIntro Statistics](https://www.openintro.org/book/os/)](openintro.jpg)
-:::
 
-::: {.column width="25%"}
+::: {.column width="33%"}
 ![[The Effect: An Introduction to Research Design and Causality](https://theeffectbook.net/)](the_effect.jpg)
 :::
 
-::: {.column width="25%"}
+::: {.column width="33%"}
 ![[Thinking Clearly with Data](https://press.princeton.edu/books/hardcover/9780691214368/thinking-clearly-with-data)](thinking_with_data.jpg)
 :::
 
-::: {.column width="25%"}
+::: {.column width="33%"}
 ![[R for Data Science](https://r4ds.had.co.nz/)](r4ds.png)
 :::
 :::
 
 ## Course Objectives
 
-Labs and assignments will be based on real-world data and problems in a wide range of fields [economics, business analytics, psychology, sociology, education, and public health]{.yellow}. How to write [beautiful documents/reports and awesome presentations in R] using [Quarto]{.yellow} will also be introduced which will increase participants productivity manifold.
+All efforts will be made to learn through hands-on practice using real-world data and problems in a wide range of fields [economics, business analytics, psychology, sociology, education, and public health]{.yellow}. How to write [beautiful documents/reports and awesome presentations in R] using [Quarto]{.yellow} will also be introduced which will increase participants productivity manifold.
 
-## Why this course
+## This workshop is about
 
 -   This course is learning about learning statistical tools with labs, slides, video lectures.
 
@@ -105,51 +100,15 @@ Labs and assignments will be based on real-world data and problems in a wide ran
 
 -   Learning how to create beautiful presentations, documents and writing research papers using R.
 
--   Concepts : control vs treatment, sampling methodologies, sample size calculation, sample bias, analyzing case studies
 
-## 
-![](ch1.png)
-Observational studies & non-causal inference,
-principles of experimental design & causal inference, exploratory data
-analysis, sampling methodology and sample size, visualizing data to get deep insight, 
-learning to have beautiful presenations, automatic citations inserted and have pdf/html/docs reports,
-basics of probability and regression modeling
+>     One can't learn all everything in 3 days time but objective is enabling beginners to move on data analytics learning path while taking professionals to next ladder from their current level of knowledge.
 
-
-    One can't learn all everything in five weeks tim but objective is enabling beginers to move on data analytics learning path while taking professionals to next ladder from their current level of knowledge.
-
-## Who should join
-
--   Anyone can join this course but obviously those who are with English, History or other humanities background will have to work very hard.
-
--   Researchers, practitioners, data journalists, data analysts and those who want to start their journey for learning data analytics.
-
-## Course contents
-
-| **Week** | **Title**                                      | **Topics covered**                                                           | **Essential reading**                                                                              |
-|:------------|:------------|:------------|:--------------------------------|
-| 1        | Software                                       | Introduction to R, RStudio , STATA, gituhub                                  | [RStudio cloud](rstudio.cloud) [github](github.com) [Quarto](quarto.pub)                           |
-| 2        | Data, Variables, Summary Statistics            | Learning and Practicing all the concepts with data                           | [tidyverse in action](https://zahidasghar.com/QM_R/tidyverse_in_action#/title-slide)                                                                                |
-|          | continued                                      | In class-labs                                                                | continued                                                                                          |
-| 4        | Exploratory Data Analysis                      | Thinking clearly with data and making sense of data using summary statistics |                                                                                                    |
-| 5        | Basic Probability Models and their application | Learning concepts and simulation experiments for understanding concepts      | [Plinko](https://phet.colorado.edu/sims/html/plinko-probability/latest/plinko-probability_en.html) |
-
-```{r}
-#| label: setup
-#| include: false
-library(tidyverse)
-library(kableExtra)
-library(patchwork)
-library(fontawesome)
-library(gapminder)
-library(scales)
-```
 
 ## Data Science
 
 -   [You go into data analysis with the tools you know, not the tools you need]{.hi}
 
--   The next 2-3 weeks are all about giving you the tools you need
+-   These 3 days are all about giving you the tools you need
 
     -   Admittedly, a bit before you know what you need them *for*
 
@@ -247,6 +206,6 @@ The average GDP per capita is `r dollar(mean(gapminder$gdpPercap))` with a stand
 library(leaflet)
 leaflet() %>%
   addTiles() %>%
-  addMarkers(lng = 73.136946, lat =33.748294 ,
-             popup = "School of Economics, QAU, Islamabad")
+  addMarkers(lng = 74.3274, lat =31.5591 ,
+             popup = "AVARI, Hotel, Lahore")
 ```

@@ -3,14 +3,11 @@
 /*-- scss:defaults --*/
 
 $link-color: #EE6331;
-$theme-darkblue: #01364C;
-$theme-blue: #99D9DD;
-$theme-white: #F7F8F9;
-$theme-yellow: #F4BA02;
-
-
 $font-family-sans-serif: 'Open Sans', sans-serif;
 $font-family-monospace: 'Fira Mono', monospace;
+$theme-yellow: #F4BA02;
+$theme-purple: #BF40BF;
+$theme-pink: #FC0FC0;
 
 $presentation-title-slide-text-align: left;
 
@@ -19,18 +16,15 @@ $presentation-title-slide-text-align: left;
 h2 {
   color: #447099 !important;
 }
-
-.blue {
-  color: $theme-blue;
-  font-weight: bold;
-}
-
 .yellow {
   color: $theme-yellow;
   font-weight: bold;
 }
-
-.reveal .slide a {
-  text-decoration: underline;
+.purple {
+  color: $theme-purple;
+  font-weight: bold;
 }
-
+.pink {
+  color: $theme-pink;
+  font-weight: bold;
+}

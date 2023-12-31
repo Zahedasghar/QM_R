@@ -1,0 +1,276 @@
+---
+format:
+  revealjs: 
+    theme: [default, custom.css,styles.scss]
+    chalkboard: true
+    multiplex: true
+    logo: images/pc.jpeg
+    # filters:
+    #   - reveal-auto-agenda
+    #   - lightbox
+    # auto-agenda:
+    #   bullets: numbered
+    #   heading: Agenda
+    # transition: fade
+    # background-transition: fade
+    highlight-style: pygments
+    footer: "[Zahid Asghar](https://zahedasghar.netlify.app)"
+    #title-slide-attributes:
+      #data-background-image: images/hexes.png
+      #data-background-size: cover
+execute:
+  echo: false
+  warning: false
+  freeze: auto
+editor: visual
+---
+
+#  {.title}
+
+::: r-fit-text
+[Data for Public Policy]{.flow} <br> [Unlocking Insights, Transforming Policy]{style="color:orange;"} 
+:::
+
+::: {style="font-size: 80px"}
+by Zahid Asghar
+:::
+
+Professor, School of Economics
+
+::: notes
+Hi everybody! Thank you so much for joining today's session with me on data for public policy. I am interested for a productive dialogue on critical reasoning in a digital World.
+:::
+
+```{r include=FALSE}
+library(tidyverse)
+library(httr)
+clrs <- MetBrewer::met.brewer(name = "Java")
+clrs_lt <- colorspace::lighten(clrs, 0.9)
+knitr::opts_chunk$set(fig.retina = 3, collapse = TRUE)
+options(digits = 3, width = 75)
+```
+
+## Outline
+
+::: incremental
+
+-   ### [Before we start](https://forms.gle/iNJM2nhJrSZ3N7hR7)
+
+-   ### How to think clearly with data
+
+-   ### [How to make sense of data in practice]{style="color:purple;"}
+
+-   ### Generating Parameterized Reports
+
+-   ### [Introduction to Quarto]{style="color:purple;"}
+
+-   ### Practice Session
+::::
+
+## Main Message
+
+>  **Art of critical thinking is highly desirable skill. [Science is providing overloaded information]{style="color:purple;"} and there is need to separate facts from fiction.**
+
+-   Policy makers, media, society, government, politicians...
+
+## [Thinking and data are complement, not substitutes]{style="color:purple;"}
+
+::: incremental
+   
+
+-   ### Clear thinking is hard specially when mixed up with techniques that surround data and data analysis 
+
+
+-   ### [Once thinking is focused, techniques will follow]{style="color:purple;"}
+:::
+
+## AI, ML, Random Forests, ANN, ...
+
+>  **We are told that this [new technology]{style="color:red;"} will made it possible to do thinking for us. But that's not right, no data analysis, [no matter how futuristics its name]{style="color:red;"}, will work if we [are'nt asking the right questions]{style="color:red;"}, if we are'nt making right comparisons, if underlying assumptions are'nt sound, or if underlying data used are'nt appropriate.**
+
+
+##
+
+::: incremental
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+-   ### [Coming up with a question is easy, but coming up with a good question is hard.]{style="color:purple;"}
+
+:::
+
+:::{.column width="50%"}
+
+-   ### A good question in empirical research is one that can be answered and improve our understanding of how world works
+:::
+::: 
+ 
+:::
+::: {.incremental}
+-   #### Which is the best car in Pakistan 
+-   #### [cant be answered?]{style="color:purple;"}
+
+-   #### Which car is sold most in Pakistan can definitely be answered.
+
+:::
+
+
+
+
+
+## Nature News Piece
+
+![](images/image-1571786506.png){fig-align="center"}
+
+2156: Women finish time for 100 m in 8.08 seconds while men will finish in 8.10 seconds.
+Letter by Prof Rice to Nature : In 2626 a far more interesting : women in less than zero seconds will finish 100 meter race
+
+# [192 Years to overcome gender gap](https://jang.com.pk/news/1206366)
+
+# [Gender Equality Is Stalling: 131 Years to Close the Gap](https://www.weforum.org/press/2023/06/gender-equality-is-stalling-131-years-to-close-the-gap/)
+
+## Data Reasoning in Digital World
+
+::: incremental
+-   #### [How to refute nonsense/bullshit/false claims]{style="color:purple;"}
+
+-   #### Why our quant courses not very helpful
+
+-   #### [Each of us create lot of nonsense (irrespective of ideaology, belongings, profession]{style="color:purple;"}
+
+-   #### Skills for talking bullshit vs Art of Critical Skill
+
+
+::: notes
+
+Refuting nonsense based on data and techniques is more difficult to refute than common media falsification
+
+Our statistical tool based courses are mainly concerned on focusing technique and very little focus on quantitative reason and logic, therefore, even educated masses fail to spot bullshit and call it bullshit.
+
+Instead of following fake news and then finding ways out to deal with it, its important that our institutions teach basic skills to savvy media consumers, such as how to fact-check news articles to how pictures can lie (New York Time Op-ed, Mark Geleotti).
+
+Each of us talk bullshit and it has nothing to do with religious/less religious.
+
+Basic skills when one is talking bullshit vs Art of Critical Skill
+:::
+:::
+
+
+# [Falsehood flies and the truth comes limping after it]{.flow}
+
+## 
+
+::: incremental
+-   **Conspiracy theory by a powerful country**
+
+-   [**Truth emerges when perception on bullshit has done its damage.**]{style="color:purple;"}
+
+-   [Alberto Barndonlini in 2014, it states:]{style="color:purple;"} **"The amount of energy need to refule bullshit is an order of magnitude bigger than [that needed]{style="color:purple;"} to produce it."**
+
+-   [Satirist Jonathan Swift wrote in 1710 that]{style="color:purple;"} **"that falsehood flies, and truth comes limping after it."**
+
+-   [FD Roosevelts' secretary of state, Cordell Hull:]{style="color:purple;"} **"A lies will gallop halfway round the world before the truth has come to pull its breeches on."**
+:::
+
+## Why lot of nonsense/bullshit
+
+Bullshit (Brandolini, Franelli and Swifts taken together)is
+
+::: incremental
+1.  **bullshit takes less work to create that to clean up.**
+
+2.  **takes less intelligence to create than to clean up, and**
+
+3.  **spreads faster than efforts to clean it up.**
+:::
+
+## [Chopal/Baithak *Gupshup* and Face the Nation to Facebook]{style="color:purple;"}
+
+### Social media provides a fertilizer for the rapid proliferation of distractions, misinformation, bullshit, and fake news.
+
+## 
+
+### [What new quantitative reasoning practice might arise with the use of new technological capabilities for exploring quantities?]{style="color:purple;"}
+
+**Consider the use of digital tools for:**
+
+-   **accessing the meaningful data**
+
+-   **visualizing data**
+
+-   **creating models and simulations of phenomena,**
+
+-   **interacting with quantitities using multi-touch environments and gestures.**
+
+## Accessing Meaningful Data
+
+::: incremental
+-   **Engage directly with the context of a task-- not contrived! Posing your own questions.**
+
+-   **Large Messy data -- understand its structure and how to process it!**
+
+-   **Access to new tools to answer**
+
+-   **trusting data sources**
+:::
+
+
+
+## How many Russian soldiers died in Ukraine-Russia war?
+
+-   Russia reports around 6000
+
+-   If you challenge it, how will you proceed
+
+-   Interviews, FGD for some information
+
+> Once some clues of under-reporting through rigrous exploration, how will you assess the actual number?
+
+
+
+### [Data shows what Moscow hides]{.flow}
+
+## Spotting Bullshit
+
+::: incremental
+
+Bullshit spotting requires care (walking at night)
+
+-   #### [1. Question the source of information]{style="color:purple;"}
+
+-   who is telling me this?
+-   How does he or she know it?
+-   What is this person trying to sell me?
+
+-   #### 2. Beware of Unfair Comparisons
+
+-   #### [3. It it seems too good or too bad to me to be true]{style="color:purple;"}
+
+-   #### 4. Think in orders of magnitude
+:::
+## Lies are designed to lead away from the truth; bullshit is produced with a gross indifference to truth.
+
+
+- [**McCool's paper, "Uromycitisis Poisoning Results in Lower Urinary Tract Infection and Acute Renal Failure: Case Report,"**]{style="color:purple;"}
+
+##  {background-color="black" background-image="https://media2.giphy.com/media/dPINusoxaJi2dU3gML/200.webp?cid=ecf05e472ghokh39348y5t428uk6lus4s0gkaiaqlwkznhuc&ep=v1_gifs_related&rid=200.webp&ct=g" background-size="300px" background-repeat="repeat"}
+
+## Sources
+
+::: incremental
+-   [Pakistan Election data sets](https://github.com/colincookman)
+-   [Colin Cookman Paper on Pakistan elections](https://github.com/colincookman/pakistan_elections/tree/master/paper)
+-   [R for political science](https://rforpoliticalscience.com/)
+-   [Steven V. Miller](http://svmiller.com/)
+-   [Learn qualitative data interactively](https://juliasilge.shinyapps.io/learntidytext/#section-introduction) [World Politics Data Lab](https://worldpoliticsdatalab.org/text-as-data/what-is-the-un-general-debate-why-should-we-study-this-yearly-event/)
+-   [NTI Nuclear Security Index](https://www.ntiindex.org/use-the-nti-index-in-your-classroom/#section-download-resources)
+-   [Google trends](https://trends.google.com/trends/)
+-   [APIs for social scientists](https://bookdown.org/paul/apis_for_social_scientists/)
+:::
+
+
+##  {background-color="black" background-image="https://media1.giphy.com/media/92cu6TfCZDVRBkmmDu/giphy.gif?cid=ecf05e47fx13mfnwlup7i5nr1amq03uocrl768itcnx81qf7&ep=v1_gifs_related&rid=giphy.gif&ct=g" background-size="300px" background-repeat="repeat"}
+
+
