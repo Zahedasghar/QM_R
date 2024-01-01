@@ -1,6 +1,6 @@
 ---
 title: "Data and Thinking"
-subtitle: "Planning Comission, Islamabad"
+subtitle: "Ministry of Planning Development and Special Initiatives"
 author: "Zahid Asghar"
 institute: "Quaid-i-Azam University, Islamabad"
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -13,8 +13,8 @@ format:
     width: 1600
     chalkboard: true
     title-slide-attributes: 
-      data-background-image: "https://img.dunyanews.tv/news/2023/April/04-16-23/news_big_images/716375_67452004.jpg"
-      data-background-size: 20%
+      data-background-image: images/data.jpg
+      data-background-size: cover
       data-background-position: 100% 0%
       data-background-color: "#447099"
 overview: true

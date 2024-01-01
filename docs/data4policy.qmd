@@ -15,9 +15,11 @@ format:
     # background-transition: fade
     highlight-style: pygments
     footer: "[Zahid Asghar](https://zahedasghar.netlify.app)"
-    #title-slide-attributes:
-      #data-background-image: images/hexes.png
-      #data-background-size: cover
+    # title-slide-attributes: 
+    #   data-background-image: images/data1.jpg
+    #   data-background-size: contain
+    #   data-background-opacity: "0.5"
+    #   data-background-color: "#447099"
 execute:
   echo: false
   warning: false
@@ -25,14 +27,14 @@ execute:
 editor: visual
 ---
 
-#  {.title}
+#  {background-image=images/public_policy.jpg background-opacity="0.2"}
 
 ::: r-fit-text
-[Data for Public Policy]{.flow} <br> [Unlocking Insights, Transforming Policy]{style="color:orange;"} 
+[Data for Public Policy]{.flow} <br> [Unlocking Insights, Transforming Policy]{style="color:purple;"} 
 :::
 
 ::: {style="font-size: 80px"}
-by Zahid Asghar
+Zahid Asghar
 :::
 
 Professor, School of Economics
